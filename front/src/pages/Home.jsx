@@ -28,16 +28,36 @@ function Home(){
                 <div className="bg-gray-100 text-gray-500 w-250 h-15 p-5 rounded-lg mt-5 content-center flex flex-row justify-between">
                     <div className="flex flex-row content-center gap-5">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input className="focus:outline-none w-200 placeholder-gray-400" type="text" placeholder="What do you wanna eat?">
-
+                        <input className="focus:outline-none w-200 placeholder-gray-200" type="text" placeholder="What do you wanna eat?">
                         </input>
                     </div>
                     <div>
                         <i class="fa-solid fa-filter"></i>
                     </div>
                 </div>
-                <div className="w-full h-full py-5">
+                <div className="w-full py-5">
                     <div className="bg-purple-600 w-full h-100 rounded-2xl"></div>
+                </div>
+                <div className="w-full h-100">
+                    <h1>Category</h1>
+                    <div className="flex flex-row gap-10 text-center">
+                        <div className="flex flex-col content-center bg-gray-200 w-25 rounded-2xl">
+                            <img src="../src/assets/Home/img/pngtree-curry-rice-gourmet-catering-transparent-png-image_9121321.png" className="w-20 mx-auto"></img>
+                            <p>Rice</p>
+                        </div>
+                        <div className="flex flex-col content-center bg-gray-200 w-25 rounded-2xl">
+                            <img src="../src/assets/Home/img/pngtree-noodles-png-image_11080064.png" className="w-20 mx-auto"></img>
+                            <p>Noodle</p>
+                        </div>
+                        <div className="flex flex-col content-center bg-gray-200 w-25 rounded-2xl">
+                            <img src="../src/assets/Home/img/pngtree-hainanese-chicken-rice-served-on-a-plate-with-dipping-sauce-png-image_10023903.png" className="w-20 mx-auto"></img>
+                            <p>Noodle</p>
+                        </div>
+                        <div className="flex flex-col content-center bg-gray-200 w-25 rounded-2xl">
+                            <img src="../src/assets/Home/img/pngtree-beef-rice-bowl-topped-with-a-sunny-side-up-egg-png-image_19531225.png" className="w-20 mx-auto"></img>
+                            <p>Noodle</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {/* -------- MY ORDER -------- */}
