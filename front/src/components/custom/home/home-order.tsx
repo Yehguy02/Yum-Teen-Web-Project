@@ -12,7 +12,7 @@ export default function HomeOrder({orders} : OrdersListProps){
         return orders.reduce((sum, order) => sum + order.base_price, 0);
     }, [orders]);
     return(
-        <div className="bg-white w-3/10 h-4/5 top-1/2 float-right mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded">
+        <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
             <div>
                 <h1 className="font-bold m-4 text-xl">My Orders</h1>
                 <ul>

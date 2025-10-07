@@ -18,9 +18,9 @@ function Home(){
     const [order, setOrder] = useState([order1, order2]);
     return(
         <>
-            <div className="bg-gray-200 w-screen h-screen flex flex-row justify-between">
+            <div className="bg-gray-200 w-screen flex flex-row justify-between">
                 <HomeSideBar/>
-                    <div className="flex flex-col items-center w-full">
+                    <div className="flex flex-col items-center w-full pr-80 pl-15">
                         <HomeSearchBar/>
                         <HomeAllStore/>
                     </div>
