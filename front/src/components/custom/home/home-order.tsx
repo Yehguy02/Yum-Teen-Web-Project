@@ -12,7 +12,7 @@ export default function HomeOrder({orders} : OrdersListProps){
         return orders.reduce((sum, order) => sum + order.base_price, 0);
     }, [orders]);
     return(
-        <div className="bg-white w-3/10 h-4/5 top-1/2 float-right mr-5 mt-5 flex flex-col justify-between pb-3">
+        <div className="bg-white w-3/10 h-4/5 top-1/2 float-right mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded">
             <div>
                 <h1 className="font-bold m-4 text-xl">My Orders</h1>
                 <ul>
@@ -34,18 +34,18 @@ export default function HomeOrder({orders} : OrdersListProps){
             <div>
                 <div className="border-2 rounded border-amber-500 m-4 p-2">
                     <div className="flex flex-row justify-between text-base">
-                        <h1>Final</h1>
+                        <h1>Total</h1>
                         <h1>฿{receipt}</h1>
                     </div>
                     {(discount > 0 || discountPercent > 0) ? (
                         <div className="flex flex-row justify-between text-base">
                             <h1>Discount</h1>
-                            <h1>฿{discount + (receipt*(discountPercent/100))}</h1>
+                            <h1 className="text-green-400">฿{discount + (receipt*(discountPercent/100))}</h1>
                         </div>
                     ) : (
                         null
                     )}
-                    <div className="flex flex-row justify-between text-lg font-bold mt-4">
+                    <div className="flex flex-row justify-between text-lg font-bold mt-4 ">
                         <h1>Final</h1>
                         <h1>฿{receipt - (discount + (receipt*(discountPercent/100)))}</h1>
                     </div>

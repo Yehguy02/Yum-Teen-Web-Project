@@ -1,6 +1,7 @@
 import HomeOrder from "@/components/custom/home/home-order";
 import HomeSideBar from "@/components/custom/home/home-sidebar";
 import HomeSearchBar from "@/components/custom/home/home-searchbar";
+import HomeAllStore from "@/components/custom/home/main/home-all-store";
 import { useState, createContext} from "react";
 
 
@@ -21,6 +22,7 @@ function Home(){
                 <HomeSideBar/>
                     <div className="flex flex-col items-center w-full">
                         <HomeSearchBar/>
+                        <HomeAllStore/>
                     </div>
                 <HomeOrder orders={order}/>
             </div>
