@@ -1,0 +1,63 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# ---- Virtual environments ----
+.env
+.venv
+env/
+venv/
+ENV/
+
+# ---- FastAPI & general app ----
+*.log
+*.db
+*.sqlite3
+
+# ---- ZODB database files ----
+data.fs
+data.fs.index
+data.fs.lock
+data.fs.tmp
+data.fs.old
+*.fs
+*.fs.index
+*.fs.lock
+*.fs.tmp
+*.fs.old
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
+
+# ---- Python tools ----
+.mypy_cache/
+.pytest_cache/
+coverage.xml
+htmlcov/
+.tox/
+.cache/
+
+# ---- Deployment / Containers ----
+*.pid
+*.bak
+*.orig
+*.tar.gz
+
+# ---- Misc ----
+# Local secrets or env vars
+*.env
+.env.local
