@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { User,Lock } from 'lucide-react'
 function App() {
   
   return (
@@ -23,17 +24,18 @@ function App() {
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
+              <User className="text-gray-300"size={18} />
               <Input
                 id="email"
                 type="email"
                 placeholder="m@example.com"
                 required
+                className="p-4 "
               />
             </div>
             <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-              </div>
+              <Label htmlFor="password">Password</Label>
+              <Lock className="text-gray-300" size={18}/>
               <Input id="password" type="password" required />
             </div>
           </div>
