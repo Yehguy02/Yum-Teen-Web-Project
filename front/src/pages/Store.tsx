@@ -17,7 +17,7 @@ export default function Store(){
     const [order, setOrder] = useState([order1, order2]);
     return(
         <>  
-            <div className="bg-gray-200 w-screen flex flex-row justify-between">
+            <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between">
                 <HomeSideBar/>
                 <StoreMain/>
                 <HomeOrder orders={order}/>
