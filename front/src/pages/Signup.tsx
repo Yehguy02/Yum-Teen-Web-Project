@@ -3,7 +3,7 @@ function Signup(){
         <>
         <div className='flex justify-center items-center mt-30'>
             <Card>
-                
+                Name Surnname Email Password Confirm Password
             </Card>
         </div>
         </>

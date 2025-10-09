@@ -44,7 +44,7 @@ function App() {
             <Checkbox id="terms" />
             <Label htmlFor="terms">Remember me</Label>
             <a
-                  href="#"
+                  href="/forgot"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline text-blue-600"
                 >
                   Forgot your password?
@@ -69,7 +69,7 @@ function App() {
         <div className="flex space-x-1 text-sm mt-3">
             <a className="text-gray-400">Don't have an account?</a>
         <a
-            href="#"
+            href="/signup"
             className=" underline-offset-4 hover:underline text-blue-600">
             Sign up?
         </a>
