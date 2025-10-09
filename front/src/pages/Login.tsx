@@ -9,12 +9,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { User,Lock } from 'lucide-react'
 function App() {
   
   return (
     <>
-    <div className='flex justify-center items-center mt-30'>
+    <div className='flex justify-center items-center mt-20'>
         <Card className="w-full max-w-sm border-2">
       <CardHeader>
         <CardTitle className="text-2xl">Welcome Back!</CardTitle>
@@ -24,7 +23,6 @@ function App() {
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <User className="text-gray-300"size={18} />
               <Input
                 id="email"
                 type="email"
@@ -35,7 +33,6 @@ function App() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Lock className="text-gray-300" size={18}/>
               <Input id="password" type="password" required />
             </div>
           </div>

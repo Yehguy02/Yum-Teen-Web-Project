@@ -1,3 +1,5 @@
+import { Card } from "@/components/ui/card";
+
 function Signup(){
     return (
         <>
