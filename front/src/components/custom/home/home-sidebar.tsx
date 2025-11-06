@@ -20,7 +20,7 @@ function HomeSideBar(){
                     <div className="flex justify-center cursor-pointer"
                         key={div.id} id={div.id} onClick={()=>{setActiveId(div.id)}}>
                             <img src={activeId === div.id ? div.activeSrc : div.defaultSrc}
-                            className={`w-12 h-12 rounded-2xl p-2 ${activeId === div.id ? "bg-amber-100" : ""}`}></img>
+                            className="w-12 h-12 rounded-2xl p-2"></img>
                     </div>
                 ))}
             </div>

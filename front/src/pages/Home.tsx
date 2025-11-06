@@ -10,7 +10,8 @@ export type Order = {
     name: string,
     quanity: number,
     base_price : number,
-    note? : string
+    note? : string,
+    img_src? : string
 }
 function Home(){
     const order1 : Order = { id : 1, name : "Curry Rice", quanity : 1, base_price : 50, note : "no spicy"};

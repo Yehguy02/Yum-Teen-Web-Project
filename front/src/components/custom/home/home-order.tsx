@@ -1,11 +1,7 @@
 import type {Order} from "../../../pages/Home.tsx";
 import { useState, useMemo } from "react";
 
-type OrdersListProps = {
-  orders: Order[];
-};
-
-export default function HomeOrder({orders} : OrdersListProps){
+export default function HomeOrder({orders} : {orders : Order[]}){
     const [discount, setDiscount] = useState(10);
     const [discountPercent, setDiscountPercent] = useState(10);
     const receipt = useMemo(() => {

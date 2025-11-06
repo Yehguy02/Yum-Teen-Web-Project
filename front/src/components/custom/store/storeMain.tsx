@@ -11,7 +11,7 @@ export default function StoreMain(){
     }
     return(
         <div className="w-screen ml-24 mr-90">
-            <div className="w-full h-50 bg-blue-500">
+            <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
 
             </div>
             <div className="bg-white w-full">
