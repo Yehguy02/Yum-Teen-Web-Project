@@ -6,7 +6,6 @@ import Signup from './pages/Signup.tsx'
 import Home from './pages/Home.tsx'
 import Forgot from './pages/ForgotPass.tsx'
 
-import Home from './pages/Home.tsx'
 import Store from './pages/Store.tsx'
 import ComfirmOrder from './pages/Confirm_Order.tsx'
 import FinishOrder from './pages/Finish_Order.tsx'

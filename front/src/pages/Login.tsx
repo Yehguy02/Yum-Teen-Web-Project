@@ -9,7 +9,29 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useState } from "react"
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  function handleError(){
+    if (!email){
+      setEmailError("Cannot have email as blank!");
+    }
+    if (!password){
+      setPasswordError("Cannot have password as blank!");
+    }
+  }
+  function handleSubmit(e : React.FormEvent){
+    e.preventDefault();
+    handleError();
+    if (emailError || passwordError){
+      // display the error here
+      return
+    }
+
+  }
   
   return (
     <>
@@ -19,21 +41,29 @@ function App() {
         <CardTitle className="text-2xl">Welcome Back!</CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
+                name="email"
                 placeholder="m@example.com"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="p-4 "
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required />
+              <Input 
+                id="password" 
+                type="password" 
+                name="password" 
+                required
+                onChange={(e) => setPassword(e.target.value)} 
+                />
             </div>
           </div>
           <div className="mt-2.5">
