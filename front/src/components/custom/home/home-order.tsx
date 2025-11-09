@@ -1,15 +1,11 @@
 import type {Order} from "../../../pages/Home.tsx";
 import { useState, useMemo } from "react";
 
-type OrdersListProps = {
-  orders: Order[];
-};
-
-export default function HomeOrder({orders} : OrdersListProps){
+export default function HomeOrder({orders} : {orders : Order[]}){
     const [discount, setDiscount] = useState(10);
     const [discountPercent, setDiscountPercent] = useState(10);
     const receipt = useMemo(() => {
-        return orders.reduce((sum, order) => sum + order.base_price, 0);
+        return orders.reduce((sum, order) => sum + order.base_price * order.quanity, 0);
     }, [orders]);
     return(
         <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
@@ -17,16 +13,21 @@ export default function HomeOrder({orders} : OrdersListProps){
                 <h1 className="font-bold m-4 text-xl">My Orders</h1>
                 <ul>
                     {orders.map((order) =>{
-                        return <li key={order.id}>
+                        return <li key={order.id} className="mb-4">
                             <div className="flex flex-row justify-between mx-6 text-lg">
                                 <div>
                                     <h1>{order.quanity} x {order.name}</h1>
                                 </div>
                                 <div>
-                                    <h1>฿{order.base_price}</h1>
+                                    <h1>฿{order.base_price * order.quanity}</h1>
                                 </div>
                             </div>
-                            <p className="text-gray-400 ml-8 mb-4 text-base">{order.note}</p>
+                            <p className="text-gray-400 ml-8 text-base">{order.note}</p>
+                            <div className="flex flex-row gap-1.5 ml-8 text-gray-500">
+                                <div className="w-5 h-5  text-center text-sm border-1 rounded-full flex justify-center" onClick={() => order.quanity = order.quanity + 1}>+</div>
+                                <p>{order.quanity}</p>
+                                <div className="w-5 h-5  text-center text-sm border-1 rounded-full flex justify-center" onClick={() => order.quanity = order.quanity - 1}>-</div>
+                            </div>
                             </li>;
                     })}
                 </ul>
