@@ -9,26 +9,40 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { toast } from "sonner"
+
 import { useState } from "react"
+import { useNavigate } from "react-router";
 function App() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  function handleError(){
-    if (!email){
-      setEmailError("Cannot have email as blank!");
-    }
-    if (!password){
-      setPasswordError("Cannot have password as blank!");
-    }
-  }
-  function handleSubmit(e : React.FormEvent){
+
+
+  const handleLogin = async (e : React.FormEvent) => {
     e.preventDefault();
-    handleError();
-    if (emailError || passwordError){
-      // display the error here
-      return
+
+    // send form to back end
+    const formData = {
+      email : email,
+      password : password,
+    }
+
+    const url = "http://localhost:8000/api/login"
+    const res = await fetch(url, {
+      method : 'POST',
+      body: JSON.stringify(formData),
+      headers: {"Content-Type": "application/json"}
+    });
+    
+    const data = await res.json();
+
+    if (res.ok){
+      const token = data.token;
+      localStorage.setItem('token' , token);
+      navigate('/');
+    }else{
+      toast.error(res.statusText);
     }
 
   }
@@ -40,8 +54,8 @@ function App() {
       <CardHeader>
         <CardTitle className="text-2xl">Welcome Back!</CardTitle>
       </CardHeader>
+      <form onSubmit={handleLogin}>
       <CardContent>
-        <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -78,21 +92,12 @@ function App() {
                 </a>
             </div>
         </div>
-        </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button type="submit" className="w-full">
           Login
         </Button>
         <hr />
-        <div className="flex gap-3">
-            <Button variant="outline" className="w-40 inline-block">
-                Login with Google
-            </Button>
-            <Button variant="outline" className="inline-block w-40">
-                Login with Gmail
-            </Button>
-        </div>
         <div className="flex space-x-1 text-sm mt-3">
             <a className="text-gray-400">Don't have an account?</a>
         <a
@@ -102,6 +107,7 @@ function App() {
         </a>
         </div>
       </CardFooter>
+      </form>
     </Card>
     </div>
       
