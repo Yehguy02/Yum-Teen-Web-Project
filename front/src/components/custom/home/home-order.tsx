@@ -1,7 +1,13 @@
-import type {Order} from "../../../pages/Home.tsx";
+import { useNavigate } from "react-router";
 import { useState, useMemo } from "react";
+import { Link } from "react-router";
 
-export default function HomeOrder({orders} : {orders : Order[]}){
+import type {Order} from "../../../pages/Home.tsx";
+
+export default function HomeOrder(){
+    const navigate = useNavigate();
+    const orders : Order[] = JSON.parse(sessionStorage.getItem("orders") || "[]");
+
     const [discount, setDiscount] = useState(10);
     const [discountPercent, setDiscountPercent] = useState(10);
     const receipt = useMemo(() => {
@@ -23,10 +29,10 @@ export default function HomeOrder({orders} : {orders : Order[]}){
                                 </div>
                             </div>
                             <p className="text-gray-400 ml-8 text-base">{order.note}</p>
-                            <div className="flex flex-row gap-1.5 ml-8 text-gray-500">
-                                <div className="w-5 h-5  text-center text-sm border-1 rounded-full flex justify-center" onClick={() => order.quanity = order.quanity + 1}>+</div>
+                            <div className="flex flex-row justify-between gap-1.5 ml-8 text-gray-500 border-1  rounded-2xl px-2 w-20 mt-2">
+                                <div className="w-5 h-5  text-center text-sm flex justify-center" onClick={() => order.quanity = order.quanity + 1}>+</div>
                                 <p>{order.quanity}</p>
-                                <div className="w-5 h-5  text-center text-sm border-1 rounded-full flex justify-center" onClick={() => order.quanity = order.quanity - 1}>-</div>
+                                <div className="w-5 h-5  text-center text-sm flex justify-center" onClick={() => order.quanity = order.quanity - 1}>-</div>
                             </div>
                             </li>;
                     })}
@@ -52,7 +58,9 @@ export default function HomeOrder({orders} : {orders : Order[]}){
                     </div>
                 </div>
                 <div className="text-center">
-                    <button className="bg-green-500 text-white py-2 px-2 rounded w-8/10">Process</button>
+                    <Link to="/user/confirm">
+                        <button className="bg-green-500 text-white py-2 px-2 rounded w-8/10">Process</button>
+                    </Link>
                 </div>
             </div>
         </div>

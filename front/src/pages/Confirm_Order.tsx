@@ -4,7 +4,9 @@ import ConfirmOrder_Promo from "@/components/custom/confirm_order/confirmOrder-P
 import type { Order } from "./Home";
 
 import { useState } from "react";
+import { Link } from "react-router";
 export default function ComfirmOrder(){
+
     type payment_method = "Cash" | "PromptPay" | "YumWallet";
     const order1 : Order = { id : 1, name : "Curry Rice", quanity : 1, base_price : 50, note : "no spicy"};
     const order2 : Order = { id : 2, name : "Pizza", quanity : 2, base_price : 100};
@@ -45,7 +47,9 @@ export default function ComfirmOrder(){
                             </div>
                         </div>
                         <div className="text-center w-full">
-                            <button className="bg-green-500 text-white px-5 py-3 font-bold rounded w-8/10">Confirm Payment</button>
+                            <Link to="/user/finish">
+                                <button className="bg-green-500 text-white px-5 py-3 font-bold rounded w-8/10">Confirm Payment</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
