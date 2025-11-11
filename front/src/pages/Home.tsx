@@ -24,6 +24,8 @@ function Home(){
         { id : 2, name : "Pizza", quanity : 2, base_price : 100}]);
     sessionStorage.setItem("orders", JSON.stringify(orders));
 
+    // Fetch recommend stores, favourite stores, nearby store, trending store from backend than put it in HomeAllStore
+
     return(
         <>
             <div className="bg-gray-200 w-screen flex flex-row justify-between">
