@@ -24,7 +24,7 @@ function Signup(){
 
     const handleSignup = async (e : React.FormEvent) => {
         e.preventDefault();
-        const url = "http://localhost:8000/api/login"
+        const url = "http://localhost:8000/api/signup"
         const res = await fetch(url, {
             method : 'POST',
             body: JSON.stringify(formData),

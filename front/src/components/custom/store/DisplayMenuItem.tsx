@@ -1,4 +1,5 @@
 export default function DisplayStoreItems({name, base_price, discounted_price = 0, img_src} : {name : string, base_price : number, discounted_price? : number, img_src? : string;}){
+    
     return(
         <div className="w-50 h-50">
             <div className="bg-blue-700 w-full h-40 rounded-xl">

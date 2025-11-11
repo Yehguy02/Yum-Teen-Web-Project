@@ -8,17 +8,32 @@ import { Link } from "react-router";
 import type {Order} from "@/index";
 
 export default function ComfirmOrder(){
-    const orders : Order[] = JSON.parse(sessionStorage.getItem("orders") || "[]");
+
     let sum = 0;
-    const [discount, setDiscount] = useState(10);
+    const [orders, setOrders] = useState<Order[]>(JSON.parse(sessionStorage.getItem("orders") || "[]"));
     for(const order of orders){
-        sum += order.base_price * order.quanity;
+        sum += (order.discounted_price ?? order.base_price) * order.quanity;
     }
+
+    const [discount, setDiscount] = useState<number>(() => {
+        const stored = sessionStorage.getItem("discount");
+        return stored ? JSON.parse(stored) as number : 0;
+    });
+    const [discountPer, setDiscountPer] = useState<number>(() => {
+        const stored = sessionStorage.getItem("discount%");
+        return stored ? JSON.parse(stored) as number : 0;
+    });
+
+
+
+
     return(
         <>
         <div className="bg-gray-100 p-5 px-10 min-h-screen">
             <div>
-                <h1>&lt; Back</h1>
+                <Link to="/">
+                    <h1>&lt; Back</h1>
+                </Link>
             </div>
             <h1 className="text-2xl font-bold">Confirm Order</h1>
             <div className="flex flex-row">
@@ -37,11 +52,11 @@ export default function ComfirmOrder(){
                             </div>
                             <div className="flex flex-row justify-between">
                                 <p>Discount</p>
-                                <p className="text-green-400">฿{discount}</p>
+                                <p className="text-green-400">฿{discount + (sum * (discountPer/100))}</p>
                             </div>
                             <div className="flex flex-row justify-between mt-5">
                                 <p>Final</p>
-                                <p>฿{sum-discount}</p>
+                                <p>฿{sum-(discount + (sum * (discountPer/100)))}</p>
                             </div>
                         </div>
                         <div className="text-center w-full">
