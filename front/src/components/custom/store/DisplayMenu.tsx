@@ -44,7 +44,7 @@ export default function DisplayMenu({title, menus_list} : {title : string, menus
                 <div className="flex flex-row flex-wrap gap-7">
                     {menus_list.map((menu) => {
                         return(
-                            <DisplayMenuItems name={menu.name} base_price={menu.base_price}/>
+                            <DisplayMenuItems name={menu.name} base_price={menu.base_price} key={menu.id}/>
                         )
                     })}
                 </div>

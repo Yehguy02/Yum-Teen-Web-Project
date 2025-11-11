@@ -55,7 +55,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
             <div className="flex flex-row gap-5 flex-wrap">
                 {stores_list.map((store) => {
                     return(
-                        <DisplayStoreItem name={store.name} star={store.star} avg_time={store.avg_time} description={store.description}/>
+                        <DisplayStoreItem key={store.id} name={store.name} star={store.star} avg_time={store.avg_time} description={store.description}/>
                     )
                 })}
             </div>
