@@ -1,22 +1,22 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from "react-router"
 import './index.css'
-import Login from './pages/Login.tsx'
-import Signup from './pages/Signup.tsx'
-import Home from './pages/Home.tsx'
-import Forgot from './pages/ForgotPass.tsx'
+import Login from './pages/authorization/Login.tsx'
+import Signup from './pages/authorization/Signup.tsx'
+import Home from './pages/main/Home.tsx'
+import Forgot from './pages/authorization/ForgotPass.tsx'
 
-import Store from './pages/Store.tsx'
-import SearchPage from './pages/Search.tsx'
+import Store from './pages/main/Store.tsx'
+import SearchPage from './pages/main/Search.tsx'
 
-import ComfirmOrder from './pages/Confirm_Order.tsx'
-import FinishOrder from './pages/Finish_Order.tsx'
-import Queue from './pages/Queue.tsx'
+import ComfirmOrder from './pages/transaction/Confirm_Order.tsx'
+import FinishOrder from './pages/transaction/Finish_Order.tsx'
+import Queue from './pages/transaction/Queue.tsx'
 
-import UserHistorty from './pages/UserHistory.tsx'
-import Favourite from './pages/Favourite.tsx'
-import UserSetting from './pages/UserSetting.tsx'
-import UserCurrent from './pages/UserCurrent.tsx'
+import UserHistorty from './pages/main/UserHistory.tsx'
+import Favourite from './pages/main/Favourite.tsx'
+import UserSetting from './pages/main/UserSetting.tsx'
+import UserCurrent from './pages/main/UserCurrent.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
