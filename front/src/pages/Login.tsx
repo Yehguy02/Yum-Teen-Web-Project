@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -20,7 +21,11 @@ function App() {
     <div className='flex justify-center items-center min-h-screen bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]'>
         <Card className="w-full max-w-sm border-2">
       <CardHeader>
-        <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
+          <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
+          <div className="flex space-x-1 space-x-3 justify-end mb-3">
+              <Switch id="store_acc" />
+              <Label htmlFor="store_acc">Store Account</Label>
+          </div>
       </CardHeader>
       <CardContent>
         <form>
@@ -61,14 +66,14 @@ function App() {
           Login
         </Button>
         <hr />
-        <div className="flex space-x-1 text-sm mt-3">
-            <a className="text-gray-400">Don't have an account?</a>
-        <a
-            href="/signup"
-            className=" underline-offset-4 hover:underline text-blue-600">
-            Sign up?
-        </a>
-        </div>
+          <div className="flex space-x-1 text-sm mt-3">
+              <a className="text-gray-400">Don't have an account?</a>
+            <a
+                href="/signup"
+                className=" underline-offset-4 hover:underline text-blue-600">
+                Sign up?
+            </a>
+          </div>
       </CardFooter>
     </Card>
     </div>
