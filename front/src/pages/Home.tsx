@@ -1,7 +1,7 @@
 import HomeOrder from "@/components/custom/home/home-order";
-import HomeSideBar from "@/components/custom/home/home-sidebar";
 import HomeSearchBar from "@/components/custom/home/home-searchbar";
 import HomeAllStore from "@/components/custom/home/main/home-all-store";
+import NavBar from "@/components/custom/global/NavBar";
 import { useState, createContext} from "react";
 
 
@@ -20,7 +20,7 @@ function Home(){
     return(
         <>
             <div className="bg-gray-200 w-screen flex flex-row justify-between">
-                <HomeSideBar/>
+                <NavBar num={0}/>
                     <div className="flex flex-col items-center w-full pr-80 pl-25">
                         <HomeSearchBar/>
                         <HomeAllStore/>
