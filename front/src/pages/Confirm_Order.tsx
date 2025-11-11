@@ -1,16 +1,14 @@
 import ConfirmOrder_Orders from "@/components/custom/confirm_order/confirmOrder-orders"
 import ConfirmOrder_PaymentMethod from "@/components/custom/confirm_order/confirmOrder-paymentMethod"
 import ConfirmOrder_Promo from "@/components/custom/confirm_order/confirmOrder-Promotion"
-import type { Order } from "./Home";
 
 import { useState } from "react";
 import { Link } from "react-router";
-export default function ComfirmOrder(){
 
-    type payment_method = "Cash" | "PromptPay" | "YumWallet";
-    const order1 : Order = { id : 1, name : "Curry Rice", quanity : 1, base_price : 50, note : "no spicy"};
-    const order2 : Order = { id : 2, name : "Pizza", quanity : 2, base_price : 100};
-    const [orders, setOrder] = useState([order1, order2]);
+import type {Order} from "@/index";
+
+export default function ComfirmOrder(){
+    const orders : Order[] = JSON.parse(sessionStorage.getItem("orders") || "[]");
     let sum = 0;
     const [discount, setDiscount] = useState(10);
     for(const order of orders){

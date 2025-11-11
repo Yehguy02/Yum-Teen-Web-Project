@@ -1,4 +1,4 @@
-import type { Order } from "@/pages/Home"
+import type { Order } from "@/index"
 export default function ConfirmOrder_Orders({orders} : {orders : Order[]}){
     return(
         <div className="bg-white">

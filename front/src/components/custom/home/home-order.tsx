@@ -2,16 +2,22 @@ import { useNavigate } from "react-router";
 import { useState, useMemo } from "react";
 import { Link } from "react-router";
 
-import type {Order} from "../../../pages/Home.tsx";
+import type {Order} from "@/index";
 
 export default function HomeOrder(){
     const navigate = useNavigate();
-    const orders : Order[] = JSON.parse(sessionStorage.getItem("orders") || "[]");
+    const [orders, setOrders] = useState<Order[]>(JSON.parse(sessionStorage.getItem("orders") || "[]"));
+    const [discount, setDiscount] = useState<number>(() => {
+        const stored = sessionStorage.getItem("discount");
+        return stored ? JSON.parse(stored) as number : 0;
+    });
+    const [discountPer, setDiscountPer] = useState<number>(() => {
+        const stored = sessionStorage.getItem("discount%");
+        return stored ? JSON.parse(stored) as number : 0;
+    });
 
-    const [discount, setDiscount] = useState(10);
-    const [discountPercent, setDiscountPercent] = useState(10);
     const receipt = useMemo(() => {
-        return orders.reduce((sum, order) => sum + order.base_price * order.quanity, 0);
+        return orders.reduce((sum, order) => sum + ((order.discounted_price ?? order.base_price) * order.quanity), 0);
     }, [orders]);
     return(
         <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
@@ -25,7 +31,14 @@ export default function HomeOrder(){
                                     <h1>{order.quanity} x {order.name}</h1>
                                 </div>
                                 <div>
-                                    <h1>฿{order.base_price * order.quanity}</h1>
+                                    {order.discounted_price ? (
+                                        <h1>฿{order.discounted_price * order.quanity} 
+                                            <span className="line-through text-gray-400 ml-1">{order.base_price * order.quanity}
+                                            </span>
+                                        </h1>
+                                    ) : (
+                                        <h1>฿{order.base_price * order.quanity}</h1>
+                                    )}
                                 </div>
                             </div>
                             <p className="text-gray-400 ml-8 text-base">{order.note}</p>
@@ -44,17 +57,17 @@ export default function HomeOrder(){
                         <h1>Total</h1>
                         <h1>฿{receipt}</h1>
                     </div>
-                    {(discount > 0 || discountPercent > 0) ? (
+                    {(discount > 0 || discountPer > 0) ? (
                         <div className="flex flex-row justify-between text-base">
                             <h1>Discount</h1>
-                            <h1 className="text-green-400">฿{discount + (receipt*(discountPercent/100))}</h1>
+                            <h1 className="text-green-400">฿{discount + (receipt*(discountPer/100))}</h1>
                         </div>
                     ) : (
                         null
                     )}
                     <div className="flex flex-row justify-between text-lg font-bold mt-4 ">
                         <h1>Final</h1>
-                        <h1>฿{receipt - (discount + (receipt*(discountPercent/100)))}</h1>
+                        <h1>฿{receipt - (discount + (receipt*(discountPer/100)))}</h1>
                     </div>
                 </div>
                 <div className="text-center">

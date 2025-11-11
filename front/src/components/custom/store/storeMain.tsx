@@ -1,4 +1,4 @@
-import StoreItemsAll from "./storeItemsAll";
+import DisplayMenu from "./DisplayMenu";
 import StarPic from "@/assets/home/star-solid-full.svg";
 
 export default function StoreMain(){
@@ -44,7 +44,8 @@ export default function StoreMain(){
                         </div>
                     </div>
                 </div>
-                <StoreItemsAll/>
+                <DisplayMenu title="Popular Now!"/>
+                <DisplayMenu title="Popular Now!"/>
             </div>
         </div>
     )
