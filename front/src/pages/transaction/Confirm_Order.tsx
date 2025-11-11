@@ -3,11 +3,12 @@ import ConfirmOrder_PaymentMethod from "@/components/custom/confirm_order/confir
 import ConfirmOrder_Promo from "@/components/custom/confirm_order/confirmOrder-Promotion"
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import type {Order} from "@/index";
 
 export default function ComfirmOrder(){
+    const navigate = useNavigate();
 
     let sum = 0;
     const [orders, setOrders] = useState<Order[]>(JSON.parse(sessionStorage.getItem("orders") || "[]"));
@@ -42,6 +43,12 @@ export default function ComfirmOrder(){
             )
         );
         console.log(orders);
+    }
+
+    function handleProcess(){
+
+        // if sucess, go to finish and clear this orders
+        navigate("/user/finish")
     }
 
 
@@ -121,9 +128,8 @@ export default function ComfirmOrder(){
                             </div>
                         </div>
                         <div className="text-center w-full">
-                            <Link to="/user/finish">
-                                <button className="bg-green-500 text-white px-5 py-3 font-bold rounded w-8/10">Confirm Payment</button>
-                            </Link>
+                            <button className="bg-green-500 text-white px-5 py-3 font-bold rounded w-8/10"
+                            onClick={() => handleProcess()}>Confirm Payment</button>
                         </div>
                     </div>
                 </div>

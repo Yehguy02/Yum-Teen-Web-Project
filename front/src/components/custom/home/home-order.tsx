@@ -37,8 +37,8 @@ export default function HomeOrder(){
         if (!curr_order) return
         const quantity = curr_order.quanity + amount;
         if(quantity <= 0){
-            toast.warning("You cannot have quanity less than 1");
-            return;
+            const newOrders = orders.filter(order => order.id !== curr_order.id);
+            setOrders(newOrders);
         }
         else if(quantity >= 100){
             toast.warning("You cannot have quanity less than 100");

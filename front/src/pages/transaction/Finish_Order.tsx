@@ -1,6 +1,8 @@
 import { Link } from "react-router"
+import sucessIcon from "@/assets/finish/check.png"
 
 export default function FinishOrder(){
+    // fetch this order detail
     return(
         <div className="bg-gray-100 px-50 flex flex-col gap-10">
             <div className="absolute left-20 top-5">
@@ -8,11 +10,11 @@ export default function FinishOrder(){
                     <p>&lt; Back</p>
                 </Link>
             </div>
-            <div className="text-center">
+            <div className="text-center mt-20">
                 <div>
-                    <img className="w-130 h-100 mx-auto" src="./src/assets/finish/sucess_microsaction.gif"></img>
+                    <img className="w-50 h-50 mx-auto" src={sucessIcon}></img>
                 </div>
-                <h1 className="text-3xl font-bold">Thank you</h1>
+                <h1 className="text-3xl font-bold mt-15">Thank you</h1>
                 <h1 className="text-3xl font-bold mb-5">Your Order has been recieved!</h1>
                 <p className="text-md text-gray-500">Please wait until your queue is up</p>
             </div>
@@ -44,7 +46,7 @@ export default function FinishOrder(){
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="px-10">
                 <h1 className="text-xl mb-5">Order list</h1>
                 <ul>
                     <li>

@@ -7,7 +7,8 @@ import Home from './pages/main/Home.tsx'
 import Forgot from './pages/authorization/ForgotPass.tsx'
 
 import Store from './pages/main/Store.tsx'
-import SearchPage from './pages/main/Search.tsx'
+import SearchNamePage from './pages/main/SearchName.tsx'
+import SearchCategoryPage from './pages/main/SearchCategory.tsx'
 
 import ComfirmOrder from './pages/transaction/Confirm_Order.tsx'
 import FinishOrder from './pages/transaction/Finish_Order.tsx'
@@ -29,7 +30,8 @@ createRoot(document.getElementById('root')!).render(
       {/* need user token */}
       <Route path="/" element={<Home />} />
       <Route path="/user/store" element={<Store />} />
-      <Route path="/user/search/:keyword" element={<SearchPage />} />
+      <Route path="/user/search/category/:keyword" element={<SearchCategoryPage />} />
+      <Route path="/user/search/name/:keyword" element={<SearchNamePage />} />
 
       <Route path="/user/confirm" element={<ComfirmOrder />} />
       <Route path="/user/finish" element={<FinishOrder />} />
