@@ -42,7 +42,7 @@ function App() {
       localStorage.setItem('token' , token);
       navigate('/');
     }else{
-      toast.error(res.statusText);
+      toast.error(data.detail);
     }
 
   }
