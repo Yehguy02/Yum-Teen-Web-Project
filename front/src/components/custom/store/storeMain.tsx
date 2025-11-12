@@ -1,4 +1,6 @@
-import StoreItemsAll from "./storeItemsAll";
+import DisplayMenu from "./DisplayMenu";
+import StarPic from "@/assets/home/star-solid-full.svg";
+
 export default function StoreMain(){
     type Payment = "Cash" | "PromptPay" | "All";
     const store : {name : string, id : string,description : string , star : number, payment : Payment, avg_time : number[]} = {
@@ -10,9 +12,8 @@ export default function StoreMain(){
         avg_time : [10, 15]
     }
     return(
-        <div className="w-screen ml-24 mr-90">
+        <div className="w-screen ml-22 mr-90 mt-5">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
-
             </div>
             <div className="bg-white w-full">
                 <div className="px-10 py-3">
@@ -20,9 +21,10 @@ export default function StoreMain(){
                     <p className="mb-5 text-gray-500">{store.description}</p>
                     <div className="flex flex-row gap-2 text-sm">
                         <div className="flex flex-row gap-1 items-center border-1 rounded px-1 py-0.5">
-                            <img className="bg-amber-300 w-4 h-4 rounded-full p-0.5" src="./src/assets/home/star-solid-full.svg"></img>
+                            <img className="bg-amber-300 w-4 h-4 rounded-full p-0.5" src={StarPic}></img>
                             <p>{store.star}</p>
                         </div>
+                        
                         {store.payment === "Cash" || store.payment === "All" ? (
                             <div className="border-1 rounded px-1 py-0.5">
                                 <p>Cash</p>
@@ -42,7 +44,10 @@ export default function StoreMain(){
                         </div>
                     </div>
                 </div>
-                <StoreItemsAll/>
+                <br />
+                <hr className="mx-4"/>
+                <DisplayMenu title="Popular Now!"/>
+                <DisplayMenu title="Popular Now!"/>
             </div>
         </div>
     )

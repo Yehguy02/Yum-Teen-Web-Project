@@ -1,4 +1,4 @@
-import type { Order } from "@/pages/Home"
+import type { Order } from "@/index"
 export default function ConfirmOrder_Orders({orders} : {orders : Order[]}){
     return(
         <div className="bg-white">
@@ -24,7 +24,13 @@ export default function ConfirmOrder_Orders({orders} : {orders : Order[]}){
                             <div className="flex flex-col justify-between py-5  items-end">
                                 <div className="bg-red-500 w-5 h-5 rounded">
                                 </div>
-                                <p>฿{order.base_price}</p>
+                                    {order.discounted_price ? (
+                                        <p>฿{order.discounted_price}
+                                            <span className="line-through text-gray-500 ml-1">{order.base_price}</span>
+                                        </p>
+                                    ) : (
+                                        <p>฿{order.base_price}</p>
+                                    )}
                             </div>
                         </div>
                     </li>

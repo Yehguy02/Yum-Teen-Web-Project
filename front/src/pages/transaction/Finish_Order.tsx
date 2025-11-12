@@ -7,11 +7,15 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import { Link } from "react-router"
+
 export default function FinishOrder(){
     return(
         <div className="bg-gray-100 px-50 flex flex-col gap-10">
             <div className="absolute left-20 top-5">
-                <p>&lt; Back</p>
+                <Link to="/">
+                    <p>&lt; Back</p>
+                </Link>
             </div>
             <div className="text-center">
                 <div className="my-5">
