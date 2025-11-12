@@ -34,7 +34,7 @@ export default function StoreSetting(){
         <Card className="my-5 ml-22 mr-5 p-0">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
             </div>
-            <div className="bg-white w-full">
+            <div className="bg-white w-[1375px]">
                 <div className="px-10 py-3">
                     <div className="flex justify-between">
                         {isEdit ? (

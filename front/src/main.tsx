@@ -19,9 +19,11 @@ import UserHistory from './pages/main/UserHistory.tsx'
 import Favourite from './pages/main/Favourite.tsx'
 import UserSetting from './pages/main/UserSetting.tsx'
 import UserCurrent from './pages/main/UserCurrent.tsx'
-import UserLogout from './pages/main/Logout.tsx'
+import UserLogout from './pages/main/UserLogout.tsx'
+
 import StoreAccount from './pages/store/StoreSetting.tsx'
 import StoreQueue from './pages/store/StoreQueue.tsx'
+import StoreLogout from './pages/store/StoreLogout.tsx'
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Routes>
@@ -48,6 +50,7 @@ createRoot(document.getElementById('root')!).render(
 
       <Route path="/store/setting" element={<StoreAccount/>}/>
       <Route path="/store/queue" element={<StoreQueue/>}/>
+      <Route path="/store/logout" element={<StoreLogout/>}/>
       {/* need admin token */}
     </Routes>
   </BrowserRouter>,

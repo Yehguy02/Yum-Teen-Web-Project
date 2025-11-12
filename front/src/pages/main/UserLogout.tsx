@@ -1,12 +1,12 @@
-import NavBar_St from "@/components/custom/global/NavBar_Store";
+import NavBar from "@/components/custom/global/NavBar";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Logout from "@/assets/other/logout.png"
-function StoreLogout(){
+function UserLogout(){
     return(
         <> 
-            <NavBar_St num={4}/>
+            <NavBar num={5}/>
             <div className="bg-gray-200 min-h-screen pt-20 px-3 pl-120 pr-120">
                 <Card className="h-[550px] shadow-lg">
                     <Label className="text-3xl justify-center">Logout</Label>
@@ -23,4 +23,4 @@ function StoreLogout(){
     )
 }
 
-export default StoreLogout;
+export default UserLogout;

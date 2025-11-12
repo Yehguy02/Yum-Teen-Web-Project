@@ -43,7 +43,7 @@ function Home(){
                         <HomeSearchBar/>
                         <HomeAllStore/>
                     </div>
-                <HomeOrder/>
+                <HomeOrder orders={orders} setOrders={setOrder}/>
             </div>
         </>
     )

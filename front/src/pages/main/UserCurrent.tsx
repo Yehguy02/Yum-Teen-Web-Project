@@ -9,19 +9,19 @@ function UserCurrent(){
             id : 1,
             order_list : ["1x Pasta","2x Coke"],
             store : "Pizza hut",
-            status : "preparing"
+            status : "Preparing"
         },
         {
             id : 2,
             order_list : ["1x Pasta","2x Coke","3x Nigger"],
             store : "Pizza hut",
-            status : "preparing"
+            status : "Ready to pick up"
         },
         {
             id : 3,
             order_list : ["1x Pasta","2x Coke"],
             store : "Pizza hut",
-            status : "preparing"
+            status : "Received"
         },
     ]
     const [visibleOrder, setVisibleOrder] = useState(null);
@@ -42,16 +42,17 @@ function UserCurrent(){
                     <div>
                         {current_orders.map((order) => {
                         return(
-                            <Card key={order.id} className="bg-white my-5 mr-5 p-5 w-full cursor-pointer" onClick={() => toggleOrder(order.id)}>
-                                <Label>Store : {order.store}</Label>
+                            <Card key={order.id} className="bg-white my-5 mr-5 p-5 w-3/8 cursor-pointer" onClick={() => toggleOrder(order.id)}>
+                                <Label className="text-lg">Store : {order.store}</Label>
                                 <hr />
-                                <Label>ID : {order.id}</Label>
+                                <Label className="text-gray-600">ID : {order.id}</Label>
                                 <Label>Status : {order.status}</Label> 
                                 {visibleOrder === order.id && (
                                     <div className="mt-2">
-                                    <Label className="text-lg">Details:</Label>
+                                    <hr />
+                                    <Label className="text-lg text-red-700 mt-3">Details:</Label>
                                     {order.order_list.map((menu, index) => (
-                                        <Label key={index} className="block my-2">
+                                        <Label key={index} className="my-2 text-red-700">
                                         {menu}
                                         </Label>
                                     ))}

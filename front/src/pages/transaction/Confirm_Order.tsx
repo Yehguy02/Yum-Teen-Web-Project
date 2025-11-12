@@ -47,8 +47,8 @@ export default function ComfirmOrder(){
     }
 
     function handleProcess(){
-
         // if sucess, go to finish and clear this orders
+        if (sum <= 0) return;
         navigate("/user/finish")
     }
 
@@ -125,7 +125,7 @@ export default function ComfirmOrder(){
                             </div>
                             <div className="flex flex-row justify-between mt-5">
                                 <p>Final</p>
-                                <p>฿{sum-(discount + (sum * (discountPer/100)))}</p>
+                                <p>฿{Math.max(sum-(discount + (sum * (discountPer/100))), 0)}</p>
                             </div>
                         </Card>
                         <div className="text-center w-full">

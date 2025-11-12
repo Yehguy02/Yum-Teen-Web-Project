@@ -1,5 +1,6 @@
 import DisplayMenu from "./DisplayMenu";
 import StarPic from "@/assets/home/star-solid-full.svg";
+import type { Order, Menu } from "@/index";
 
 export default function StoreMain(){
     const store : {name : string, id : string,description : string , star : number, payment : string, avg_time : number[]} = {
@@ -49,5 +50,5 @@ export default function StoreMain(){
                 <DisplayMenu title="Popular Now!"/>
             </div>
         </div>
-    )
+  );
 }
