@@ -1,6 +1,8 @@
 import DisplayMenu from "./DisplayMenu";
 import StarPic from "@/assets/home/star-solid-full.svg";
-import type { Order, Menu } from "@/index";
+import { useParams } from 'react-router';
+import type { Order, Menu, Store } from "@/index";
+import { useEffect, useState } from "react";
 
 type StoreMainProps = {
   orders: Order[];
@@ -8,24 +10,43 @@ type StoreMainProps = {
 };
 
 export default function StoreMain({ orders, setOrders }: StoreMainProps) {
-  const store = {
+  const { id } = useParams();
+  
+  const [storeInfo, setStoreInfo] = useState<Store>( {
     name: "Store name",
-    id: "1",
+    id: 1,
     description: "Thai food or not, idk",
     star: 4.3,
     payment: "All",
     avg_time: [10, 15],
-  };
+    category : ["Thai", "Northern Thai Food"]
+  });
+  useEffect(() => {
+    const fetchStore = async () => {
+      const res = await fetch("/store/" + id);
+      if (res.ok){
+        const storeData: Store = await res.json();
+        setStoreInfo(storeData);
+      }
+    }
+    fetchStore();
+  }, [])
 
   return (
     <div className="w-screen ml-24 mr-90">
-      <div className="w-full h-50 bg-blue-500 rounded-t-2xl" />
+      <div className="w-full h-50 bg-blue-500 rounded-t-2xl mt-5" />
       <div className="bg-white w-full">
         <div className="px-10 py-3">
-          <h1 className="font-bold text-2xl">{store.name}</h1>
-          <p className="mb-5 text-gray-500">{store.description}</p>
-          <div className="flex flex-row gap-2 text-sm">
-            {/* ...store info... */}
+          <h1 className="font-bold text-3xl">{storeInfo.name}</h1>
+          <p className="mb-5 text-gray-500">{storeInfo.description}</p>
+          <div className="flex flex-row gap-2">
+            {storeInfo.category ? storeInfo.category.map((category) => {
+              return(
+                <div className="border-1 border-black px-1.5 rounded">{category}</div>
+              )
+            }) : (
+              <></>
+            )}
           </div>
         </div>
 

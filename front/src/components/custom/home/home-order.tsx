@@ -39,6 +39,15 @@ export default function HomeOrder({ orders, setOrders }: HomeOrderProps) {
       return sum + price * order.quanity;
     }, 0);
   }, [orders]);
+  const totalDiscount = useMemo(() => {
+    return orders.reduce((sum, order) => {
+        if (order.discounted_price) {
+        const diff = order.base_price - order.discounted_price;
+        return sum + diff * order.quanity;
+        }
+        return sum;
+    }, 0);
+    }, [orders]);
 
   return (
     <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
@@ -84,7 +93,7 @@ export default function HomeOrder({ orders, setOrders }: HomeOrderProps) {
           </div>
           <div className="flex flex-row justify-between text-base text-green-500">
             <h1>Discount</h1>
-            <h1>฿{Math.max(receipt, 0)}</h1>
+            <h1>฿{Math.max(totalDiscount, 0)}</h1>
           </div>
           <div className="flex flex-row justify-between text-lg font-bold mt-4">
             <h1>Final</h1>

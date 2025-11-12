@@ -22,6 +22,7 @@ function UserHistorty(){
             price : 500
         },
     ]
+    
 
     return(
         <>

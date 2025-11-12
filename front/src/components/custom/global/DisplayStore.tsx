@@ -10,6 +10,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },
             {
                 id : 2,
@@ -17,6 +18,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },
             {
                 id : 3,
@@ -24,12 +26,14 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },{
                 id : 4,
                 name : "Name",
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },
             {
                 id : 5,
@@ -37,6 +41,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },
             {
                 id : 6,
@@ -44,6 +49,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                 star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
+                payment : "Promptpay"
             },       
             
         ]
