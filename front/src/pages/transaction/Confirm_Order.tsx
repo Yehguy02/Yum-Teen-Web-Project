@@ -2,6 +2,7 @@ import crossMark from "@/assets/global/xmark-solid-full.svg"
 import ConfirmOrder_PaymentMethod from "@/components/custom/confirm_order/confirmOrder-paymentMethod"
 import ConfirmOrder_Promo from "@/components/custom/confirm_order/confirmOrder-Promotion"
 
+import { Card } from "@/components/ui/card"
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 
@@ -108,7 +109,7 @@ export default function ComfirmOrder(){
                     <ConfirmOrder_PaymentMethod/>
                     <ConfirmOrder_Promo discount={discount} setDiscount={setDiscount}/>
                     <div className="flex flex-col  gap-5 bg-white p-5">
-                        <div className="border p-5 rounded-2xl">
+                        <Card className="border p-5 rounded-2xl">
                             <h1 className="font-bold">Order Summary</h1>
                             <div className="flex flex-row justify-between">
                                 <p>Total</p>
@@ -122,7 +123,7 @@ export default function ComfirmOrder(){
                                 <p>Final</p>
                                 <p>฿{Math.max(sum-discount, 0)}</p>
                             </div>
-                        </div>
+                        </Card>
                         <div className="text-center w-full">
                             <button className="bg-green-500 text-white px-5 py-3 font-bold rounded w-8/10"
                             onClick={() => handleProcess()}>Confirm Payment</button>

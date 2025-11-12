@@ -14,13 +14,17 @@ import favActive from "@/assets/home/icon/heart-regular-full-active.svg";
 import settingDefault from "@/assets/home/icon/gear-solid-full.svg";
 import settingActive from "@/assets/home/icon/gear-solid-full-active.svg";
 
+import LogoutDefault from "@/assets/home/icon/logout.svg"
+import LogoutActive from "@/assets/home/icon/logout_yellow.svg"
+
 function NavBar({num} : {num : number}){
     const divs = [
         {id : "home", defaultSrc : homeDefault, activeSrc : homeActive, href : "/" },
         {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
         {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/user/history" },
         {id : "favourite", defaultSrc : favDefault , activeSrc : favActive, href : "/user/favourite" },
-        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/user/setting" }
+        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/user/setting" },
+        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/user/logout" }
     ]
     
     return(
@@ -28,10 +32,11 @@ function NavBar({num} : {num : number}){
             {/* 255 213 61 */}
             <div className="flex flex-col gap-4 mt-20">
                 {divs.map((div) => (
-                    <Link to={div.href} key={div.id}>
-                        <div className="flex justify-center cursor-pointer"id={div.id}>
-                            <img src={divs[num].id === div.id ? div.activeSrc : div.defaultSrc}
-                            className="w-12 h-12 rounded-2xl p-2"></img>
+                    <Link to={div.href}>
+                        <div className="flex justify-center cursor-pointer hover:bg-gray-300 rounded mx-3"
+                            key={div.id} id={div.id}>
+                                <img src={divs[num].id === div.id ? div.activeSrc : div.defaultSrc}
+                                className="w-12 h-12 rounded-2xl p-2"></img>
                         </div>
                     </Link>
                 ))}

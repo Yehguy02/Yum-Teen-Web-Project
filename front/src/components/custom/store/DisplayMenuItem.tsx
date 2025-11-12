@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { Order } from "@/index";
-
+import { Card } from "@/components/ui/card";
 export default function DisplayStoreItems({id, name, base_price, discounted_price = 0, img_src} : {id :number, name : string, base_price : number, discounted_price? : number, img_src? : string;}){
     // add in cart
     const [orders, setOrders] = useState<Order[]>(() => {
@@ -40,7 +40,7 @@ export default function DisplayStoreItems({id, name, base_price, discounted_pric
     }
 
     return(
-        <div className="w-50 h-50">
+        <Card className="w-50 h-50 p-2">
             <div className="bg-blue-700 w-full h-40 rounded-xl">
                 <img src={img_src}></img>
             </div>
@@ -61,6 +61,6 @@ export default function DisplayStoreItems({id, name, base_price, discounted_pric
                     }}></div>
                 </div>
             </div>
-        </div>
+        </Card>
     )
 }
