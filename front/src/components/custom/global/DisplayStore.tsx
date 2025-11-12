@@ -1,6 +1,6 @@
 import DisplayStoreItem from "@/components/custom/global/DisplayStoreItem.tsx"
 import type {Store} from "@/index"
-
+import { Label } from "@/components/ui/label"
 export default function DisplayStore({title, stores_list} : {title : string, stores_list? : Store[]}){
     if (!stores_list){
         stores_list = [
@@ -51,11 +51,11 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
     return(
         // href of each store in "/user/store/{store_id}"
         <div className="w-full">
-            <h1 className="text-xl font-bold mb-5">{title}</h1>
+            <Label className="text-3xl mb-5">{title}</Label>
             <div className="flex flex-row gap-5 flex-wrap">
                 {stores_list.map((store) => {
                     return(
-                        <DisplayStoreItem name={store.name} star={store.star} avg_time={store.avg_time} description={store.description}/>
+                        <DisplayStoreItem key={store.id} name={store.name} star={store.star} avg_time={store.avg_time} description={store.description} id={store.id}/>
                     )
                 })}
             </div>

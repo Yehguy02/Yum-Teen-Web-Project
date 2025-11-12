@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Link } from "react-router"
+import sucessIcon from "@/assets/finish/check.png"
 
 export default function FinishOrder(){
+    // fetch this order detail
     return(
         <div className="bg-gray-100 px-50 flex flex-col gap-10">
             <div className="absolute left-20 top-5">
@@ -17,13 +15,13 @@ export default function FinishOrder(){
                     <p>&lt; Back</p>
                 </Link>
             </div>
-            <div className="text-center">
-                <div className="my-5">
-                    <img className="w-130 h-100 mx-auto" src="./src/assets/finish/sucess_microsaction.gif"></img>
+            <div className="text-center mt-20">
+                <div>
+                    <img className="w-50 h-50 mx-auto" src={sucessIcon}></img>
                 </div>
-                <h1 className="text-3xl font-bold">Thank you</h1>
-                <h1 className="text-3xl font-bold my-5">Your Order has been received!</h1>
-                <p className="text-md text-gray-500">Please wait until your queue is up.....</p>
+                <h1 className="text-3xl font-bold mt-15">Thank you</h1>
+                <h1 className="text-3xl font-bold mb-5">Your Order has been recieved!</h1>
+                <p className="text-md text-gray-500">Please wait until your queue is up</p>
             </div>
             <Card className="bg-white p-5">
                 <h1 className="font-bold text-2xl mb-10">Order detail</h1>

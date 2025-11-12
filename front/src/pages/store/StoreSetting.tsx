@@ -29,8 +29,8 @@ export default function StoreSetting(){
         avg_time : [10, 15]
     }
     return(
-        <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between">
-        <NavBar_Store num={1}/>
+        <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between  bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]">
+        <NavBar_Store num={3}/>
         <Card className="my-5 ml-22 mr-5 p-0">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
             </div>

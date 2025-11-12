@@ -2,8 +2,7 @@ import DisplayMenu from "./DisplayMenu";
 import StarPic from "@/assets/home/star-solid-full.svg";
 
 export default function StoreMain(){
-    type Payment = "Cash" | "PromptPay" | "All";
-    const store : {name : string, id : string,description : string , star : number, payment : Payment, avg_time : number[]} = {
+    const store : {name : string, id : string,description : string , star : number, payment : string, avg_time : number[]} = {
         name : "Store name",
         id : "1",
         description : "Thai food or not, idk",

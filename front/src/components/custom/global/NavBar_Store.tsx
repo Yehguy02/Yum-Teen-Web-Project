@@ -21,10 +21,9 @@ function NavBar({num} : {num : number}){
     const divs = [
         {id : "home", defaultSrc : homeDefault, activeSrc : homeActive, href : "/" },
         {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
-        {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/user/history" },
-        {id : "favourite", defaultSrc : favDefault , activeSrc : favActive, href : "/user/favourite" },
-        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/user/setting" },
-        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/user/logout" }
+        {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/store/queue" },
+        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/store/setting" },
+        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/store/logout" }
     ]
     
     return(
