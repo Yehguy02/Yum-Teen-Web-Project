@@ -113,7 +113,11 @@ export default function HomeOrder(){
                     )}
                     <div className="flex flex-row justify-between text-lg font-bold mt-4 ">
                         <h1>Final</h1>
-                        <h1>฿{receipt - (discount + (receipt*(discountPer/100)))}</h1>
+                        {receipt - (discount + (receipt*(discountPer/100))) >= 0 ? (
+                            <h1>฿{receipt - (discount + (receipt*(discountPer/100)))}</h1>
+                        ) : (
+                            <h1>฿0</h1>
+                        )}
                     </div>
                 </div>
                 <div className="text-center">
