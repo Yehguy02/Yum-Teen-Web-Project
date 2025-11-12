@@ -1,14 +1,25 @@
 import persistent
 
 class Store(persistent.Persistent):
-    def __init__(self, name, order_history, category, star, menu_list) -> None:
+    def __init__(self, id, name, order_history, category, star, menu_list) -> None:
+        self.id = id
         self.name = name
         self.order_history = order_history
         self.category = category
         self.star = star
         self.menu_list = menu_list
 
+    def add_menu(self, menu):
+        self.menu_list.append(menu)
+
+    def remove_menu(self, menu):
+        if menu in self.menu_list:
+            self.menu_list.remove(menu)
+    
+
     # getter
+    def getID(self):
+        return self.id
     def getName(self):
         return self.name
     def getOrderHistory(self):
@@ -21,6 +32,8 @@ class Store(persistent.Persistent):
         return self.menu_list
     
     # setter
+    def setID(self, id):
+        self.id = id
     def setName(self, name):
         self.name = name
     def setOrderHistory(self, order_history):
