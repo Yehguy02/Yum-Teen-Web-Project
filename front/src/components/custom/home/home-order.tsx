@@ -1,12 +1,28 @@
 import { useNavigate } from "react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
 
 import type {Order} from "@/index";
 
 export default function HomeOrder(){
     const navigate = useNavigate();
-    const [orders, setOrders] = useState<Order[]>(JSON.parse(sessionStorage.getItem("orders") || "[]"));
+
+    const [orders, setOrders] = useState<Order[]>(() => {
+        try {
+            const raw = sessionStorage.getItem("orders");
+            const parsed = JSON.parse(raw || "[]");
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+            console.error("Failed to parse orders from sessionStorage", e);
+            return [];
+        }
+    });
+    useEffect(() => {
+        sessionStorage.setItem("orders", JSON.stringify(orders));
+    }, [orders]);
+
+
     const [discount, setDiscount] = useState<number>(() => {
         const stored = sessionStorage.getItem("discount");
         return stored ? JSON.parse(stored) as number : 0;
@@ -16,8 +32,34 @@ export default function HomeOrder(){
         return stored ? JSON.parse(stored) as number : 0;
     });
 
+    function handleQuantityModify(id : number, name : string, amount : number){
+        const curr_order = orders.find((order) => order.id == id && order.name == name);
+        if (!curr_order) return
+        const quantity = curr_order.quanity + amount;
+        if(quantity <= 0){
+            const newOrders = orders.filter(order => order.id !== curr_order.id);
+            setOrders(newOrders);
+        }
+        else if(quantity >= 100){
+            toast.warning("You cannot have quanity less than 100");
+            return;
+        }
+        setOrders(prevOrders =>
+            prevOrders.map(order =>
+                order.id === id && order.name === name
+                    ? { ...order, quanity: quantity }
+                    : order
+            )
+        );
+    }
+
+
     const receipt = useMemo(() => {
-        return orders.reduce((sum, order) => sum + ((order.discounted_price ?? order.base_price) * order.quanity), 0);
+        if (!Array.isArray(orders)) return 0;
+        return orders.reduce((sum, order) => {
+            const price = order.discounted_price ?? order.base_price;
+            return sum + price * order.quanity;
+        }, 0);
     }, [orders]);
     return(
         <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
@@ -43,9 +85,13 @@ export default function HomeOrder(){
                             </div>
                             <p className="text-gray-400 ml-8 text-base">{order.note}</p>
                             <div className="flex flex-row justify-between gap-1.5 ml-8 text-gray-500 border-1  rounded-2xl px-2 w-20 mt-2">
-                                <div className="w-5 h-5  text-center text-sm flex justify-center cursor-pointer" onClick={() => order.quanity = order.quanity + 1}>+</div>
+                                <div className="w-5 h-5  text-center text-sm flex justify-center cursor-pointer" 
+                                onClick={() => handleQuantityModify(order.id, order.name, 1)}>
+                                    +</div>
                                 <p>{order.quanity}</p>
-                                <div className="w-5 h-5  text-center text-sm flex justify-center cursor-pointer" onClick={() => order.quanity = order.quanity - 1}>-</div>
+                                <div className="w-5 h-5  text-center text-sm flex justify-center cursor-pointer" 
+                                onClick={() => handleQuantityModify(order.id, order.name, -1)}>
+                                    -</div>
                             </div>
                             </li>;
                     })}
@@ -67,7 +113,11 @@ export default function HomeOrder(){
                     )}
                     <div className="flex flex-row justify-between text-lg font-bold mt-4 ">
                         <h1>Final</h1>
-                        <h1>฿{receipt - (discount + (receipt*(discountPer/100)))}</h1>
+                        {receipt - (discount + (receipt*(discountPer/100))) >= 0 ? (
+                            <h1>฿{receipt - (discount + (receipt*(discountPer/100)))}</h1>
+                        ) : (
+                            <h1>฿0</h1>
+                        )}
                     </div>
                 </div>
                 <div className="text-center">

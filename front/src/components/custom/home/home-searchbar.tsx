@@ -9,7 +9,7 @@ export default function HomeSearchBar(){
     const handleKeyDown = (e : React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && searchKeyWord != "") {  
             const keyword = searchKeyWord.split(" ").join("+").toLowerCase();
-            navigate("/user/search/"+keyword);
+            navigate("/user/search/name/"+keyword);
         }
     }
     return(

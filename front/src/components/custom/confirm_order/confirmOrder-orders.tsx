@@ -1,5 +1,12 @@
+import { useEffect } from "react";
+
 import type { Order } from "@/index"
+import crossMark from "@/assets/global/xmark-solid-full.svg"
+
+
 export default function ConfirmOrder_Orders({orders} : {orders : Order[]}){
+
+
     return(
         <div className="bg-white">
             <ul>
@@ -14,15 +21,16 @@ export default function ConfirmOrder_Orders({orders} : {orders : Order[]}){
                                 <div className="flex flex-col justify-between p-3">
                                     <h1 className="font-bold text-lg">{order.name}</h1>
                                     {order.note ? (<p className="text-gray-500">{order.note}</p>): (<></>)}
-                                    <div className="flex flex-row items-center gap-1.5 mt-3">
-                                        <div className="w-4 h-4 rounded-xs bg-green-300"></div>
-                                        <p className="text-sm">{order.quanity}</p>
-                                        <div className="w-4 h-4 rounded-xs bg-green-300"></div>
+                                    <div className="flex flex-row items-center gap-1.5 mt-3 text-sm border-1 justify-around w-20 rounded-2xl">
+                                        <p>+</p>
+                                        <p>{order.quanity}</p>
+                                        <p>-</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="flex flex-col justify-between py-5  items-end">
-                                <div className="bg-red-500 w-5 h-5 rounded">
+                                <div className="w-5 h-5 rounded">
+                                    <img src={crossMark}></img>
                                 </div>
                                     {order.discounted_price ? (
                                         <p>฿{order.discounted_price}

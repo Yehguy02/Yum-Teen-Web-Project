@@ -1,6 +1,6 @@
 import NavBar from "@/components/custom/global/NavBar";
 import { useParams } from "react-router";
-function SearchPage(){
+function SearchCategoryPage(){
     const {keyword} = useParams();
 
     return(
@@ -13,4 +13,4 @@ function SearchPage(){
     )
 }
 
-export default SearchPage;
+export default SearchCategoryPage;
