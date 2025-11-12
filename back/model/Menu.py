@@ -1,11 +1,11 @@
 import persistent
 
 class Menu(persistent.Persistent):
-    def __init__(self, name, price, note, discount_price, image_url) -> None:
+    def __init__(self, name, price, note, image_url) -> None:
         self.name = name
         self.price = price
         self.note = note
-        self.discount_price = discount_price
+        self.discount_price = price
         self.image_url = image_url
 
     # getter

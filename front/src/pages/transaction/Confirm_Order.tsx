@@ -21,10 +21,6 @@ export default function ComfirmOrder(){
         const stored = sessionStorage.getItem("discount");
         return stored ? JSON.parse(stored) as number : 0;
     });
-    const [discountPer, setDiscountPer] = useState<number>(() => {
-        const stored = sessionStorage.getItem("discount%");
-        return stored ? JSON.parse(stored) as number : 0;
-    });
 
     useEffect(() => {
             sessionStorage.setItem("orders", JSON.stringify(orders));
@@ -111,7 +107,7 @@ export default function ComfirmOrder(){
                 </div>
                 <div className="w-2/5 p-5 ">
                     <ConfirmOrder_PaymentMethod/>
-                    <ConfirmOrder_Promo/>
+                    <ConfirmOrder_Promo discount={discount} setDiscount={setDiscount}/>
                     <div className="flex flex-col  gap-5 bg-white p-5">
                         <Card className="border p-5 rounded-2xl">
                             <h1 className="font-bold">Order Summary</h1>
@@ -121,11 +117,11 @@ export default function ComfirmOrder(){
                             </div>
                             <div className="flex flex-row justify-between">
                                 <p>Discount</p>
-                                <p className="text-green-400">฿{discount + (sum * (discountPer/100))}</p>
+                                <p className="text-green-400">฿{discount}</p>
                             </div>
                             <div className="flex flex-row justify-between mt-5">
                                 <p>Final</p>
-                                <p>฿{Math.max(sum-(discount + (sum * (discountPer/100))), 0)}</p>
+                                <p>฿{Math.max(sum-discount, 0)}</p>
                             </div>
                         </Card>
                         <div className="text-center w-full">

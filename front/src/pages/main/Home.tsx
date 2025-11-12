@@ -8,15 +8,24 @@ import type { Order } from "@/index";
 
 function Home(){
 
-    // get cart data from session storage
-    // if empty, create one
-    // if yes, save to orders
-    const [discount, setDiscount] = useState(10);
-    const [discountPercent, setDiscountPercent] = useState(10);
-    const [orders, setOrder] = useState<Order[]>([]);
+    const [discount, setDiscount] = useState<Order[]>(() => {
+        try {
+        const raw = sessionStorage.getItem("discount");
+        return raw ? JSON.parse(raw) : [];
+        } catch {
+            return [];
+        }
+    });
+    const [orders, setOrders] = useState<Order[]>(() => {
+        try {
+        const raw = sessionStorage.getItem("orders");
+        return raw ? JSON.parse(raw) : [];
+        } catch {
+            return [];
+        }
+    });
     sessionStorage.setItem("orders", JSON.stringify(orders));
     sessionStorage.setItem("discount", JSON.stringify(discount));
-    sessionStorage.setItem("discount%", JSON.stringify(discountPercent));
 
     // useEffect(() => {
         
@@ -43,7 +52,7 @@ function Home(){
                         <HomeSearchBar/>
                         <HomeAllStore/>
                     </div>
-                <HomeOrder orders={orders} setOrders={setOrder}/>
+                <HomeOrder orders={orders} setOrders={setOrders}/>
             </div>
         </>
     )

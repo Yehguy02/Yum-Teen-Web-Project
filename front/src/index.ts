@@ -4,7 +4,8 @@ export type Store = {
     star : number,
     avg_time : number[],
     description : string
-    catogory? : string[]
+    payment : string
+    category? : string[]
 }
 export type Order = {
     id : number,
