@@ -1,11 +1,12 @@
 export type Store = {
     id : number
     name : string
-    star : number,
-    avg_time : number[],
+    avg_time? : number[],
     description : string
     payment : string
-    category? : string[]
+    category? : string[],
+    menu_list? : Menu[],
+    img_src? : string
 }
 export type Order = {
     id : number,
@@ -25,4 +26,13 @@ export type Menu = {
     store? : string,
     description? : string,
     img_src? : string
+}
+
+export type Queue = {
+    id : number,
+    store : string,
+    order : string[],
+    status : string,
+    price : number,
+    date : string
 }

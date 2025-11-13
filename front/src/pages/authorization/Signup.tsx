@@ -12,37 +12,53 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Switch } from "@/components/ui/switch"
+import { authAPI } from "@/services/api";
+
 function Signup(){
     const navigate = useNavigate();
-    const [isStore,setStore] = useState(false);
     const [formData, setFormData] = useState({
-        username : "",
         email : "",
         password : "",
         confirmpassword : "",
-        phone : ""
     })
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSignup = async (e : React.FormEvent) => {
         e.preventDefault();
-        const url = "http://localhost:8000/api/signup"
-        const res = await fetch(url, {
-            method : 'POST',
-            body: JSON.stringify(formData),
-            headers: {"Content-Type": "application/json"}
-            });
-        const data = await res.json();
 
-        if (res.ok){
-            const token = data.token;
-            localStorage.setItem('token' , token);
-            navigate('/');
-        }else{
-            toast.error(data.detail);
+        // Validate form
+        if (!formData.email || !formData.password || !formData.confirmpassword) {
+            toast.error("Please fill in all fields");
+            return;
+        }
+
+        if (formData.confirmpassword !== formData.password) {
+            toast.error("Passwords do not match!");
+            return;
+        }
+
+        if (formData.password.length < 6) {
+            toast.error("Password must be at least 6 characters");
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            const data = await authAPI.signup(formData.email, formData.password);
+            
+            if (data.access_token) {
+                localStorage.setItem('token', data.access_token);
+                toast.success("Signup successful!");
+                navigate('/');
+            }
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : "Signup failed";
+            toast.error(errorMessage);
+        } finally {
+            setIsLoading(false);
         }
     }
-
 
     return (
         <>
@@ -51,23 +67,13 @@ function Signup(){
             <CardHeader>
                 <CardTitle className="text-center text-2xl">Create an account</CardTitle>
                 <Label className="text-center block">
-                    Sign to Continue
+                    Sign up to Continue
                 </Label>
             </CardHeader>
             <form onSubmit={handleSignup}>
             <CardContent>
                 <div className="flex flex-col gap-6 mb-5">
                     <div className="grid gap-2">
-                        <Label htmlFor="Name">Name</Label>
-                        <Input
-                            id="name"
-                            type="name"
-                            placeholder="Diss Nut"
-                            required
-                            onChange={(e) => {
-                                setFormData(data => ({...data, username: e.target.value}))
-                            }}
-                        />
                         <Label htmlFor="email">Email</Label>
                         <Input
                             className="bg-white text-black border-gray-300"
@@ -75,6 +81,7 @@ function Signup(){
                             type="email"
                             placeholder="m@example.com"
                             required
+                            value={formData.email}
                             onChange={(e) => {
                                 setFormData(data => ({...data, email: e.target.value}))
                             }}
@@ -84,8 +91,9 @@ function Signup(){
                             className="bg-white text-black border-gray-300"
                             id="password"
                             type="password"
-                            placeholder="12345678"
+                            placeholder="At least 6 characters"
                             required
+                            value={formData.password}
                             onChange={(e) => {
                                 setFormData(data => ({...data, password: e.target.value}))
                             }}
@@ -95,35 +103,25 @@ function Signup(){
                             className="bg-white text-black border-gray-300"
                             id="confirm_password"
                             type="password"
-                            placeholder="12345678"
+                            placeholder="Confirm your password"
                             required
+                            value={formData.confirmpassword}
                             onChange={(e) => {
                                 setFormData(data => ({...data, confirmpassword: e.target.value}))
                             }}
                         />
-                        <Label htmlFor="phone_number">Phone number</Label>
-                        <Input
-                            className="bg-white text-black border-gray-300" 
-                            id="phone_number"
-                            type="phone_number"
-                            placeholder="0987654321"
-                            required
-                            onChange={(e) => {
-                                setFormData(data => ({...data, phone: e.target.value}))
-                            }}
-                        />
                         <div className="flex space-x-2 mt-2 ">
                             <Checkbox id="terms" />
-                            <Label htmlFor="terms">Remember me</Label>
+                            <Label htmlFor="terms">I agree to the terms and conditions</Label>
                         </div>
                     </div>
                 </div>
             </CardContent>
             <CardFooter className="flex-col gap-2">
-                <Button type="submit" className="w-full">
-                    Sign up
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? "Creating account..." : "Sign up"}
                 </Button>
-                <Button variant="outline" className="w-full mt-1" onClick={()=>navigate('/login')}>
+                <Button variant="outline" className="w-full mt-1" onClick={()=>navigate('/login')} disabled={isLoading}>
                     Back to Login
                 </Button>   
             </CardFooter>

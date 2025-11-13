@@ -11,6 +11,7 @@ import Account from './pages/Account.tsx'
 import Store from './pages/main/Store.tsx'
 import SearchNamePage from './pages/main/SearchName.tsx'
 import SearchCategoryPage from './pages/main/SearchCategory.tsx'
+import StoreQueueID from './pages/store/StoreQueueID.tsx'
 
 import ComfirmOrder from './pages/transaction/Confirm_Order.tsx'
 import FinishOrder from './pages/transaction/Finish_Order.tsx'
@@ -33,7 +34,6 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/account" element={<Account />}/>
       <Route path="/user/signup" element={<Signup />}/>
 
-      {/* need user token */}
       <Route path="/" element={<Home />} />
       <Route path="/user/store/:id" element={<Store />} />
       <Route path="/user/search/category/:keyword" element={<SearchCategoryPage />} />
@@ -49,9 +49,8 @@ createRoot(document.getElementById('root')!).render(
       <Route path="/user/logout" element={<UserLogout />} />
 
       <Route path="/store/setting" element={<StoreAccount/>}/>
-      <Route path="/store/queue" element={<StoreQueue/>}/>
+      <Route path="/store/queue/:id" element={<StoreQueueID/>}/>
       <Route path="/store/logout" element={<StoreLogout/>}/>
-      {/* need admin token */}
     </Routes>
   </BrowserRouter>,
 )

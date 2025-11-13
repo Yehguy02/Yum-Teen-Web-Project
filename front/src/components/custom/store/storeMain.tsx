@@ -12,29 +12,24 @@ type StoreMainProps = {
 export default function StoreMain({ orders, setOrders }: StoreMainProps) {
   const { id } = useParams();
   
-  const [storeInfo, setStoreInfo] = useState<Store>( {
-    name: "Store name",
-    id: 1,
-    description: "Thai food or not, idk",
-    star: 4.3,
-    payment: "All",
-    avg_time: [10, 15],
-    category : ["Thai", "Northern Thai Food"]
-  });
+  const [storeInfo, setStoreInfo] = useState<Store>();
   useEffect(() => {
     const fetchStore = async () => {
-      const res = await fetch("/store/" + id);
+      const res = await fetch("http://localhost:8000/store/" + id);
       if (res.ok){
-        const storeData: Store = await res.json();
-        setStoreInfo(storeData);
+        const storeData = await res.json();
+        console.log(storeData.store);
+        setStoreInfo(storeData.store);
       }
     }
     fetchStore();
   }, [])
-
+  if (!storeInfo) {
+    return <div className="text-gray-500 ml-24 mt-5">Loading store info...</div>;
+  }
   return (
     <div className="w-screen ml-24 mr-90">
-      <div className="w-full h-50 bg-blue-500 rounded-t-2xl mt-5" />
+      <div className={`w-full h-50 bg-blue-500 rounded-t-2xl mt-5 bg-[url(${storeInfo.img_src})]`} />
       <div className="bg-white w-full">
         <div className="px-10 py-3">
           <h1 className="font-bold text-3xl">{storeInfo.name}</h1>
@@ -51,8 +46,8 @@ export default function StoreMain({ orders, setOrders }: StoreMainProps) {
         </div>
 
         {/* Pass shared state to DisplayMenu */}
-        <DisplayMenu title="Popular Now!" orders={orders} setOrders={setOrders} />
-        <DisplayMenu title="Recommended" orders={orders} setOrders={setOrders} />
+        <DisplayMenu title="Popular Now!" orders={orders} setOrders={setOrders} menus_list={storeInfo.menu_list} />
+        <DisplayMenu title="Recommended" orders={orders} setOrders={setOrders} menus_list={storeInfo.menu_list}/>
       </div>
     </div>
   );
