@@ -5,7 +5,8 @@ export type Store = {
     description : string
     payment : string
     category? : string[],
-    menu_list? : Menu[]
+    menu_list? : Menu[],
+    img_src? : string
 }
 export type Order = {
     id : number,
