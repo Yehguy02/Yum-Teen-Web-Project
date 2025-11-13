@@ -1,81 +1,40 @@
-import DisplayStoreItem from "@/components/custom/global/DisplayStoreItem.tsx"
-import type {Store} from "@/index"
-import { Label } from "@/components/ui/label"
-export default function DisplayStore({title, stores_list} : {title : string, stores_list? : Store[]}){
-    
-    const fetchStore = async () => {
-        const res = await fetch("/store/all");
-        if (!res.ok){
-            const data = await res.json();
-            stores_list = data.store_list;
-        }
-    }
-    fetchStore();
+import DisplayStoreItem from "@/components/custom/global/DisplayStoreItem.tsx";
+import type { Store } from "@/index";
+import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
 
-    if (!stores_list){
-        stores_list = [
-            {
-                id : 1,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
-            },
-            {
-                id : 2,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay"
-            },
-            {
-                id : 3,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
-            },{
-                id : 4,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
-            },
-            {
-                id : 5,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
-            },
-            {
-                id : 6,
-                name : "Name",
-                avg_time : [15, 30],
-                description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
-            },       
-            
-        ]
-    }
-    return(
-        // href of each store in "/user/store/{store_id}"
-        <div className="w-full overflow-x-auto p-5">
-            <Label className="text-3xl sm:ml-0 ml-80 mb-5">{title}</Label>
-            <div className="sm:flex gap-5 ml-80 sm:ml-0 flex-wrap grid grid-cols-1 w-[250px] sm:w-full">
-                {stores_list.map((store) => {
-                    return(
-                        <DisplayStoreItem 
-                            key={store.id} name={store.name} avg_time={store.avg_time} 
-                            description="" id={store.id} category={store.category} img_src={store.img_src}/>
-                    )
-                })}
+type DisplayStoreProps = {
+    title: string;
+    stores_list?: Store[];
+    isLoading?: boolean;
+};
+
+export default function DisplayStore({ title, stores_list = [], isLoading = false }: DisplayStoreProps) {
+    const shouldShowSkeleton = isLoading && stores_list.length === 0;
+    const skeletonItems = Array.from({ length: 4 });
+
+    return (
+        <section className="w-full">
+            <div className="px-4 sm:px-0">
+                <Label className="text-2xl font-semibold text-gray-900">{title}</Label>
             </div>
-        </div>
-    )
+            <div className="mt-4 grid w-full gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:px-0">
+                {shouldShowSkeleton
+                    ? skeletonItems.map((_, index) => (
+                        <Skeleton key={`skeleton-${index}`} className="h-64 w-full rounded-2xl" />
+                    ))
+                    : stores_list.map(store => (
+                        <DisplayStoreItem
+                            key={store.id}
+                            name={store.name}
+                            avg_time={store.avg_time}
+                            description={store.description ?? ""}
+                            id={store.id}
+                            category={store.category}
+                            img_src={store.img_src}
+                        />
+                    ))}
+            </div>
+        </section>
+    );
 }
