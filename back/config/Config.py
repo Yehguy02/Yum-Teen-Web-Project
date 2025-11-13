@@ -77,16 +77,6 @@ def init_db(root):
     store7.setMenuList(menus7)
     store8.setMenuList(menus8)
 
-    # Add stores to root
-    root.stores[store1.getID()] = store1
-    root.stores[store2.getID()] = store2
-    root.stores[store3.getID()] = store3
-    root.stores[store4.getID()] = store4
-    root.stores[store5.getID()] = store5
-    root.stores[store6.getID()] = store6
-    root.stores[store7.getID()] = store7
-    root.stores[store8.getID()] = store8
-
     # Create test user
     user = User("nig4 fatass", 
                 "67011140@kmitl.ac.th",
@@ -115,14 +105,26 @@ def init_db(root):
     # Create coupon code
     coupon1 = Coupon("DISCOUNT10", 10, "10 baht off on your next order", "31/12/2025")
     
-    user.add_order_history(order1)
-    user.setCurrent(order2)
+    user.add_order_history(order2)
+    user.setCurrent(order1)
 
     user.add_favorite(store4)
     user.add_favorite(store6)
     user.add_favorite(store7)
     user.add_coupon(coupon1)
+
+    store1.add_queue(order1)
     
+    # Add stores to root
+    root.stores[store1.getID()] = store1
+    root.stores[store2.getID()] = store2
+    root.stores[store3.getID()] = store3
+    root.stores[store4.getID()] = store4
+    root.stores[store5.getID()] = store5
+    root.stores[store6.getID()] = store6
+    root.stores[store7.getID()] = store7
+    root.stores[store8.getID()] = store8
+
     # Add user to root
     root.users[user.getEmail()] = user
                 

@@ -12,10 +12,15 @@ class Store(persistent.Persistent):
 
     def add_menu(self, menu):
         self.menu_list.append(menu)
+    def add_queue(self, order):
+        self.queue.append(order)
 
     def remove_menu(self, menu):
         if menu in self.menu_list:
             self.menu_list.remove(menu)
+    def remove_queue(self, order):
+        if order in self.queue:
+            self.queue.remove(order)
     
 
     # getter
