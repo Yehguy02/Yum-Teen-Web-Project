@@ -110,7 +110,7 @@ export default function ComfirmOrder(){
                                 <div className="flex flex-row justify-between ">
                                     <div className="flex flex-row">
                                         <div className="w-30 h-30 bg-amber-300">
-                                            <img src={order.img_src}></img>
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Eataly_Las_Vegas_-_Feb_2019_-_Sarah_Stierch_12.jpg/500px-Eataly_Las_Vegas_-_Feb_2019_-_Sarah_Stierch_12.jpg" className="w-full h-full"></img>
                                         </div>
                                         <div className="flex flex-col justify-between p-3">
                                             <h1 className="font-bold text-lg">{order.name}</h1>
