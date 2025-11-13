@@ -16,14 +16,14 @@ def init_db(root):
     root.tokens = BTrees.OOBTree.BTree()
 
     # create some stores
-    store1 = Store(1, "Pizza Hut", [], [], "Italian", 4.5, [])
-    store2 = Store(2, "Sushi King", [], [], "Japanese", 4.1, [])
-    store3 = Store(3, "Donald's", [], [], "Fast Food", 3.9, [])
-    store4 = Store(4, "KFC", [], [], "Fast Food", 4.4, [])
-    store5 = Store(5, "Noodles is life", [], [], "Noodles", 4.2, [])
-    store6 = Store(6, "MeeZaa", [], [], "Japanese", 4.6, [])
-    store7 = Store(7, "Prab Zian", [], [], "Dining", 4.8, [])
-    store8 = Store(8, "Kra Pao Tad", [], [], "Dining", 3.2, [])
+    store1 = Store(1, "Pizza Hut", [], [], ["Italian"], 4.5, [])
+    store2 = Store(2, "Sushi King", [], [], ["Japanese"], 4.1, [])
+    store3 = Store(3, "Donald's", [], [], ["Fast Food"], 3.9, [])
+    store4 = Store(4, "KFC", [], [], ["Fast Food"], 4.4, [])
+    store5 = Store(5, "Noodles is life", [], [], ["Noodles"], 4.2, [])
+    store6 = Store(6, "MeeZaa", [], [], ["Japanese"], 4.6, [])
+    store7 = Store(7, "Prab Zian", [], [], ["Dining"], 4.8, [])
+    store8 = Store(8, "Kra Pao Tad", [], [], ["Dining"], 3.2, [])
 
     # create some menus
     menus1 = [
