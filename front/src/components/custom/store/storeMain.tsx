@@ -46,8 +46,8 @@ export default function StoreMain({ orders, setOrders }: StoreMainProps) {
         </div>
 
         {/* Pass shared state to DisplayMenu */}
-        <DisplayMenu title="Popular Now!" orders={orders} setOrders={setOrders} />
-        <DisplayMenu title="Recommended" orders={orders} setOrders={setOrders} />
+        <DisplayMenu title="Popular Now!" orders={orders} setOrders={setOrders} menus_list={storeInfo.menu_list} />
+        <DisplayMenu title="Recommended" orders={orders} setOrders={setOrders} menus_list={storeInfo.menu_list}/>
       </div>
     </div>
   );

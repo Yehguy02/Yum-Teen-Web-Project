@@ -43,28 +43,51 @@ export default function ComfirmOrder(){
     }
 
     async function handleProcess(){
-        // if sucess, go to finish and clear this orders
-        // const res = await fetch("/order/process", {
-        //     method : "POST",
-        //     headers : {
-        //         "Content-Type" : "application/json"
-        //     },
-        //     body : JSON.stringify({
-        //         orders : orders,
-        //         discount : discount,
-        //         sum : sum
-        //     })
-        // });
-        // if (!res.ok){
-        //     const data = await res.json();
-        //     alert(data.detail);
-        //     return;
-        // }
+        // Validate discount is an integer
+        const discountValue = Math.floor(discount);
+        
+        // Validate orders exist
+        if (!orders || orders.length === 0) {
+            alert("No items in order");
+            return;
+        }
 
-        if (sum <= 0) return;
-        sessionStorage.setItem("orders", JSON.stringify([]));
-        sessionStorage.setItem("discount", JSON.stringify(0));
-        navigate("/user/finish", {state : {orders : orders, discount : discount, sum : sum}})
+        if (sum <= 0) {
+            alert("Order total must be greater than 0");
+            return;
+        }
+
+        try {
+            // Send order data with proper structure
+            const response = await fetch("http://localhost:8000/order/process", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    order: orders,
+                    discount: discountValue,
+                    sum: Math.floor(sum),
+                    id: 1
+                })
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                console.error("Order processing failed:", data);
+                alert(`Error: ${data.detail || data.message || "Failed to process order"}`);
+                return;
+            }
+
+            if (data.success || response.ok) {
+                sessionStorage.setItem("orders", JSON.stringify([]));
+                sessionStorage.setItem("discount", JSON.stringify(0));
+                navigate("/user/finish", {state : {orders : orders, discount : discountValue, sum : sum}});
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+            alert("Failed to process order. Please try again.");
+        }
     }
 
 
@@ -105,7 +128,7 @@ export default function ComfirmOrder(){
                                         <div className="w-5 h-5 rounded">
                                             <img src={crossMark}
                                             onClick={() => {
-                                                const newOrders = orders.filter(curr_order => curr_order.id !== order.id);
+                                                const newOrders = orders.filter(curr_order => curr_order.id !== order.id || curr_order.name !== order.name);
                                                 setOrders(newOrders);
                                             }}></img>
                                         </div>

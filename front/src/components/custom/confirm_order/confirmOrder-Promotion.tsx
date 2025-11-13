@@ -6,9 +6,11 @@ export default function ConfirmOrder_Promo({discount, setDiscount} : {discount :
     const result = useRef<HTMLParagraphElement>(null);
 
     const handleApply = async () => {
-        const res = await fetch("/user/coupons/" + promocode);
-        const code = await res.json();
-        if (code.sucess == "false"){
+        const res = await fetch("http://localhost:8000/user/coupons/" + promocode);
+        const code_raw = (await res.json())
+        console.log(console.log())
+        const code = code_raw.results;
+        if (!code || isNaN(code)){
             result.current!.textContent = "Invalid Promocode!";
             setSuccess(false);
         }else{

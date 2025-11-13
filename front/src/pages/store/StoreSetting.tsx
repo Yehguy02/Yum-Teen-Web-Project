@@ -33,7 +33,7 @@ export default function StoreSetting(){
     });
     return(
         <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between  bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]">
-        <NavBar_Store num={0}/>
+        <NavBar_Store num={2    }/>
         <Card className="my-5 ml-26 w-[1375px] ">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
             </div>

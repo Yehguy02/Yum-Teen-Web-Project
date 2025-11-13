@@ -1,10 +1,11 @@
 export type Store = {
     id : number
     name : string
-    avg_time : number[],
+    avg_time? : number[],
     description : string
     payment : string
-    category? : string[]
+    category? : string[],
+    menu_list? : Menu[]
 }
 export type Order = {
     id : number,

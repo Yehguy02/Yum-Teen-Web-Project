@@ -72,7 +72,7 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
                     return(
                         <DisplayStoreItem 
                             key={store.id} name={store.name} avg_time={store.avg_time} 
-                            description={store.description} id={store.id} category={store.category}/>
+                            description="" id={store.id} category={store.category}/>
                     )
                 })}
             </div>

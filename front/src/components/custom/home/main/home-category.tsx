@@ -9,8 +9,8 @@ export default function HomeCategory(){
                 <CategoryItems name="Rich rice" img_src="./src/assets/home/fatty-chicken-rice.png"/>
                 <CategoryItems name="Cheap rice" img_src="./src/assets/home/fried-rice-with-basil.png"/>
                 <CategoryItems name="Cheap rice" img_src="./src/assets/home/fried-rice-with-basil.png"/>
-                <CategoryItems name="Cheap rice" img_src="./src/assets/home/fried-rice-with-basil.png"/>
-                <CategoryItems name="Cheap rice" img_src="./src/assets/home/fried-rice-with-basil.png"/>
+                <CategoryItems name="Fast Food" img_src="./src/assets/home/fried-rice-with-basil.png"/>
+                <CategoryItems name="Italian" img_src="./src/assets/home/fried-rice-with-basil.png"/>
             </div>
         </div>
     )

@@ -12,17 +12,27 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useState } from "react";
-import type { Queue } from "@/index";
+import type {  Order } from "@/index";
 
+type Queue = {
+    date : string,
+    menu_list : Order[],
+    order_id : number,
+    order_status : string,
+    payment_status : boolean
+    total_price : number
+}
 function UserHistorty(){
     const [histories, setHistories] = useState<Queue[]>([]);
     const fetchCurrentOrder = async () => {
-        const res = await fetch("/user/history");
+        const res = await fetch("http://localhost:8000/user/history");
         if(res.ok){
             const data = await res.json();
-            setHistories(data.order);
+            setHistories(data.order_history);
         }
     }
+    console.log(histories);
+
     fetchCurrentOrder();
     return(
         <>
@@ -35,31 +45,40 @@ function UserHistorty(){
                     </div>
                     <Label className="text-lg">Keep track of your previous purchases and completed orders.</Label>
                     <div className="pt-3 grid grid-cols-4">
-                        {histories.map((history)=>{
-                            return(
-                                <Card className="w-[300px] px-4 pt-4 my-4 ">
-                                    <div className="flex justify-between">
-                                        <Label className="text-lg">{history.store}</Label>
-                                        <Label className="text-lg mr-2">฿{history.price}</Label>
-                                    </div> 
-                                    <div className="flex justify-between">
-                                        <Label className="mt-2">{history.date}</Label>
-                                        <Dialog>
-                                            <DialogTrigger asChild>
-                                            <Button className="text-black bg-white hover:bg-white text-3xl mr-0 cursor-pointer">&rarr;</Button>
-                                            </DialogTrigger>
-                                            <DialogContent className="w-[300px]">
-                                                <DialogTitle>Order List: </DialogTitle>
-                                                {history.order.map((menu)=>(
-                                                    <DialogDescription>{menu}</DialogDescription>
-                                                ))}
-                                            </DialogContent>
-                                        </Dialog>
-                                    </div>  
-                                    
+                        {histories ? (
+                            histories.map((history, index) => (
+                                <Card key={index} className="w-[300px] px-4 pt-4 my-4">
+                                <div className="flex justify-between">
+                                    <Label className="text-lg">{history.date}</Label>
+                                    <Label className="text-lg mr-2">฿{history.total_price}</Label>
+                                </div> 
+
+                                <div className="flex justify-end">
+
+                                    <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button className="text-black bg-white hover:bg-white text-3xl mr-0 cursor-pointer">
+                                        &rarr;
+                                        </Button>
+                                    </DialogTrigger>
+
+                                    <DialogContent className="w-[300px]">
+                                        <DialogTitle>Order List:</DialogTitle>
+                                        {history.menu_list && history.menu_list.length > 0 ? (
+                                        history.menu_list.map((menu, i) => (
+                                            <DialogDescription key={i}>{menu.name}</DialogDescription>
+                                        ))
+                                        ) : (
+                                        <DialogDescription>No items</DialogDescription>
+                                        )}
+                                    </DialogContent>
+                                    </Dialog>
+                                </div>
                                 </Card>
-                            )
-                        })}
+                            ))
+                            ) : (
+                            <>Loading...</>
+                            )}
                     </div>
                 </Card>
             </div>

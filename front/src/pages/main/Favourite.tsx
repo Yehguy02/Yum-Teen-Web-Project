@@ -11,14 +11,13 @@ function Favourite(){
 
     const [stores, setStores] = useState<Store[]>([]);
     const fetchSearch = async () => {
-        const res = await fetch("/favourite");
-        if (!res.ok){
+        const res = await fetch("http://localhost:8000/user/favorites");
+        if (res.ok){
             const data = await res.json();
-            setStores(data.store_list);
+            setStores(data.favorites);
         }
     }
     fetchSearch();
-
 
     return(
         <>

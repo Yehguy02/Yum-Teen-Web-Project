@@ -1,6 +1,7 @@
 import HomeCategory from "./home-category"
 import DisplayStores from "@/components/custom/global/DisplayStore"
 import type { Store } from "@/index"
+import GrabBanner from "@/assets/home/grab-banner.png"
 
 export default function HomeAllStore({
   popularStores = [],
@@ -15,6 +16,7 @@ export default function HomeAllStore({
             <HomeCategory/>
             <a href="https://youtu.be/dQw4w9WgXcQ?si=uNjbh50AirwHZqqI" target="_blank">
                 <div className="bg-blue-400 w-19/20 h-60 rounded-2xl">
+                    <img src={GrabBanner} className="w-full h-full"></img>
                 </div>
             </a>
 
