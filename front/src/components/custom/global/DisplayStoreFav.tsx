@@ -2,77 +2,60 @@ import DisplayStoreItem from "@/components/custom/global/DisplayStoreItem.tsx"
 import type {Store} from "@/index"
 import { Label } from "@/components/ui/label"
 export default function DisplayStore({title, stores_list} : {title : string, stores_list? : Store[]}){
-    
-    const fetchStore = async () => {
-        const res = await fetch("/store/all");
-        if (!res.ok){
-            const data = await res.json();
-            stores_list = data.store_list;
-        }
-    }
-    fetchStore();
-
     if (!stores_list){
         stores_list = [
             {
                 id : 1,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
             },
             {
                 id : 2,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay"
             },
             {
                 id : 3,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
             },{
                 id : 4,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
             },
             {
                 id : 5,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
             },
             {
                 id : 6,
                 name : "Name",
+                star : 4.3,
                 avg_time : [15, 30],
                 description : "Thai food naja",
-                payment : "Promptpay",
-                category : ["Thai", "Chinese"]
             },       
             
         ]
     }
     return(
         // href of each store in "/user/store/{store_id}"
-        <div className="w-full overflow-x-auto p-5">
-            <Label className="text-3xl sm:ml-0 ml-80 mb-5">{title}</Label>
-            <div className="sm:flex gap-5 ml-80 sm:ml-0 flex-wrap grid grid-cols-1 w-[250px] sm:w-full">
+        <div className="w-full overflow-x-auto px-2 py-5 sm:p-5">
+            <Label className="text-3xl sm:ml-0 mb-5">{title}</Label>
+            <div className="sm:flex sm:flex-row gap-5 sm:ml-0 flex-wrap grid grid-cols-1">
                 {stores_list.map((store) => {
                     return(
-                        <DisplayStoreItem 
-                            key={store.id} name={store.name} avg_time={store.avg_time} 
-                            description="" id={store.id} category={store.category} img_src={store.img_src}/>
+                        <DisplayStoreItem key={store.id} name={store.name} star={store.star} avg_time={store.avg_time} description={store.description} id={store.id}/>
                     )
                 })}
             </div>

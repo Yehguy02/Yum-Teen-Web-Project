@@ -27,7 +27,7 @@ function NavBar({num} : {num : number}){
     ]
     
     return(
-        <div className="bg-white w-1/20 h-screen float-left fixed">
+        <div className="bg-white w-1/20 h-screen float-left fixed hidden sm:block">
             {/* 255 213 61 */}
             <div className="flex flex-col gap-4 mt-20">
                 {divs.map((div) => (
@@ -41,6 +41,7 @@ function NavBar({num} : {num : number}){
                 ))}
             </div>
         </div>
+        
     )
 }
 

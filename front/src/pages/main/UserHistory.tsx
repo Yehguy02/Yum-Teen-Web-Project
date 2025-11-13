@@ -1,4 +1,5 @@
 import NavBar from "@/components/custom/global/NavBar";
+import NavRow from "@/components/custom/global/RowNav";
 import HistoryItems from "@/components/custom/history/HistoryItems.tsx";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
@@ -37,14 +38,12 @@ function UserHistorty(){
     return(
         <>
             <NavBar num={2}/>
-            <div className="bg-gray-200 min-h-screen pt-7 px-3">
-                <Card className="ml-22 pt-5 px-7 w-[1370px]">
-                    <div className="flex justify-between">
-                        <Label className="text-3xl">History</Label>
-                        <Button className="text-black bg-white hover:bg-white hover:underline text-lg">Back</Button>
-                    </div>
-                    <Label className="text-lg">Keep track of your previous purchases and completed orders.</Label>
-                    <div className="pt-3 grid grid-cols-4">
+            <div className="bg-gray-200 min-h-screen sm:pt-7 px-0 sm:px-3 pt-27 sm:pt-17">
+                <Card className="sm:ml-22 pt-5 sm:px-7 sm:w-[1370px] w-[340px] px-4">
+                    <Label className="text-xl sm:text-3xl">History</Label>
+                    <Label className="sm:text-lg ">Keep track of your previous purchases and completed orders.</Label>
+
+                    <div className="pt-3 grid sm:grid-cols-4 grid-cols-1 gap-2">
                         {histories ? (
                             histories.map((history, index) => (
                                 <Card key={index} className="w-[300px] px-4 pt-4 my-4">
@@ -54,26 +53,26 @@ function UserHistorty(){
                                 </div> 
 
                                 <div className="flex justify-end">
+                                        <Dialog>
+                                            <DialogTrigger asChild>
+                                                <Button className="text-black bg-white hover:bg-white text-3xl mr-0 cursor-pointer">
+                                                &rarr;
+                                                </Button>
+                                            </DialogTrigger>
 
-                                    <Dialog>
-                                    <DialogTrigger asChild>
-                                        <Button className="text-black bg-white hover:bg-white text-3xl mr-0 cursor-pointer">
-                                        &rarr;
-                                        </Button>
-                                    </DialogTrigger>
-
-                                    <DialogContent className="w-[300px]">
-                                        <DialogTitle>Order List:</DialogTitle>
-                                        {history.menu_list && history.menu_list.length > 0 ? (
-                                        history.menu_list.map((menu, i) => (
-                                            <DialogDescription key={i}>{menu.name}</DialogDescription>
-                                        ))
-                                        ) : (
-                                        <DialogDescription>No items</DialogDescription>
-                                        )}
-                                    </DialogContent>
-                                    </Dialog>
-                                </div>
+                                            <DialogContent className="w-[300px]">
+                                                <DialogTitle>Order List:</DialogTitle>
+                                                {history.menu_list && history.menu_list.length > 0 ? (
+                                                history.menu_list.map((menu, i) => (
+                                                    <DialogDescription key={i}>{menu.name}</DialogDescription>
+                                                ))
+                                                ) : (
+                                                <DialogDescription>No items</DialogDescription>
+                                                )}
+                                            </DialogContent>
+                                        </Dialog>
+                                    </div>  
+                                    
                                 </Card>
                             ))
                             ) : (
@@ -82,6 +81,7 @@ function UserHistorty(){
                     </div>
                 </Card>
             </div>
+            <NavRow num={2}/>
         </>
     )
 }

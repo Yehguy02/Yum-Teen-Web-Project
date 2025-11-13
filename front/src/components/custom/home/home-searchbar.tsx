@@ -13,7 +13,7 @@ export default function HomeSearchBar(){
         }
     }
     return(
-        <div className="bg-white w-9/10 h-12 m-5 rounded-xl flex flex-row justify-between items-center pl-5 pr-2">
+        <div className="ml-3 mt-25 bg-white w-[300px] sm:w-9/10 h-12 sm:mt-5 rounded-xl flex flex-row justify-between items-center pl-5 pr-2">
             <input 
                 placeholder="What do you wanna eat?" 
                 className="focus:outline-0 w-8/10 placeholder:text-gray-400"
