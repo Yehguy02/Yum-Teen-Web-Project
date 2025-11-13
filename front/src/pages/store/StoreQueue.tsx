@@ -18,7 +18,7 @@ export default function StoreQueue(){
     }
     return(
         <div>
-            <NavBarSt num={2}/>
+            <NavBarSt num={1}/>
             <div className="min-h-screen bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000] pt-7 px-3">
             <Card className=" ml-22 mr-5">
                 <CardHeader>

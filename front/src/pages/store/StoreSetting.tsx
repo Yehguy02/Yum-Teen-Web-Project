@@ -1,4 +1,4 @@
-import DisplayMenu from "@/components/custom/store/DisplayMenu.tsx";
+import DisplayMenu from "@/components/custom/global/DisplayMenuGlobal";
 import StarPic from "@/assets/home/star-solid-full.svg";
 import { Card,CardHeader,CardContent,CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button' 
@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import NavBar_Store from "@/components/custom/global/NavBar_Store";
+
 export default function StoreSetting(){
     const [isEdit,setEdit] = useState(false);
     const [isDetail,setDetail] = useState(false);
@@ -30,7 +31,7 @@ export default function StoreSetting(){
     }
     return(
         <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between  bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]">
-        <NavBar_Store num={3}/>
+        <NavBar_Store num={2}/>
         <Card className="my-5 ml-22 mr-5 p-0">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
             </div>

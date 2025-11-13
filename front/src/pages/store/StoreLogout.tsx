@@ -6,7 +6,7 @@ import Logout from "@/assets/other/logout.png"
 function StoreLogout(){
     return(
         <> 
-            <NavBar_St num={4}/>
+            <NavBar_St num={3}/>
             <div className="bg-gray-200 min-h-screen pt-20 px-3 pl-120 pr-120">
                 <Card className="h-[550px] shadow-lg">
                     <Label className="text-3xl justify-center">Logout</Label>

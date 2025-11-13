@@ -19,7 +19,6 @@ import LogoutActive from "@/assets/home/icon/logout_yellow.svg"
 
 function NavBar({num} : {num : number}){
     const divs = [
-        {id : "home", defaultSrc : homeDefault, activeSrc : homeActive, href : "/" },
         {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
         {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/store/queue" },
         {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/store/setting" },
