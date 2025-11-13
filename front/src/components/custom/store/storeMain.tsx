@@ -29,7 +29,7 @@ export default function StoreMain({ orders, setOrders }: StoreMainProps) {
   }
   return (
     <div className="w-screen ml-24 mr-90">
-      <div className={`w-full h-50 bg-blue-500 rounded-t-2xl mt-5 bg-[url(${storeInfo.img_src})]`} />
+      <div className={`w-full h-50 bg-blue-500 rounded-t-2xl mt-5 bg-[url(https://evomall.my/wp-content/uploads/2020/03/SUSHI-KING-scaled-2048x1536.jpeg)]`} />
       <div className="bg-white w-full">
         <div className="px-10 py-3">
           <h1 className="font-bold text-3xl">{storeInfo.name}</h1>

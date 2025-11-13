@@ -40,10 +40,10 @@ function UserHistorty(){
             <div className="bg-gray-200 min-h-screen pt-7 px-3">
                 <Card className="ml-22 pt-5 px-7 w-[1370px]">
                     <div className="flex justify-between">
-                        <Label className="text-3xl">History</Label>
+                        <Label className="text-3xl">Current Order</Label>
                         <Button className="text-black bg-white hover:bg-white hover:underline text-lg">Back</Button>
                     </div>
-                    <Label className="text-lg">Keep track of your previous purchases and completed orders.</Label>
+                    <Label className="text-lg">Keep track of your purchases and orders.</Label>
                     <div className="pt-3 grid grid-cols-4">
                         {histories ? (
                             histories.map((history, index) => (

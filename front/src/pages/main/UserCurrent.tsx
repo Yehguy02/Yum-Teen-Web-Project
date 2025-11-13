@@ -72,7 +72,7 @@ function UserCurrent(){
             <div className="bg-gray-200 min-h-screen pt-7 px-3">
                 <Card className="ml-22 pt-5 px-7 w-[1370px]">
                     <div className="flex justify-between">
-                        <Label className="text-3xl">Current Order</Label>
+                        <Label className="text-3xl">History Order</Label>
                         <Button 
                             className="text-black bg-white hover:bg-white hover:underline text-lg"
                             onClick={() => navigate(-1)}
@@ -80,7 +80,7 @@ function UserCurrent(){
                             Back
                         </Button>
                     </div>
-                    <Label className="text-lg">See the details and status of your active order.</Label>
+                    <Label className="text-lg">See the details and status of your order.</Label>
                     
                     {!currentOrder ? (
                         <Card className="bg-white my-2 mr-5 p-5 w-3/8">

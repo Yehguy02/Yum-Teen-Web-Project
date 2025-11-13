@@ -12,11 +12,11 @@ export default function HomeAllStore({
 }){
 
     return(
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 ml-10">
             <HomeCategory/>
             <a href="https://youtu.be/dQw4w9WgXcQ?si=uNjbh50AirwHZqqI" target="_blank">
                 <div className="bg-blue-400 w-19/20 h-60 rounded-2xl">
-                    <img src={GrabBanner} className="w-full h-full"></img>
+                    <img src={GrabBanner} className="w-full h-full max-h-100"></img>
                 </div>
             </a>
 
