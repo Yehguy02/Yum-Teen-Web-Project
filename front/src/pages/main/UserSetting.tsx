@@ -3,7 +3,16 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
 function UserSetting(){
+    const [formData, setFormData] = useState({
+        username : "",
+        email : "",
+        phone : "",
+        payment : ""
+    })
+
     return(
         <> 
             <NavBar num={4}/>

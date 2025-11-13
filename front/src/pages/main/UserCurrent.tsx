@@ -3,31 +3,21 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import type { Queue } from "@/index";
 function UserCurrent(){
-    const current_orders = [
-        {
-            id : 1,
-            order_list : ["1x Pasta","2x Coke"],
-            store : "Pizza hut",
-            status : "Preparing"
-        },
-        {
-            id : 2,
-            order_list : ["1x Pasta","2x Coke","3x Nigger"],
-            store : "Pizza hut",
-            status : "Ready to pick up"
-        },
-        {
-            id : 3,
-            order_list : ["1x Pasta","2x Coke"],
-            store : "Pizza hut",
-            status : "Received"
-        },
-    ]
-    const [visibleOrder, setVisibleOrder] = useState(null);
+    const [current_orders, setCurrentOrder] = useState<Queue[]>([]);
+    const fetchCurrentOrder = async () => {
+        const res = await fetch("/user/current");
+        if(res.ok){
+            const data = await res.json();
+            setCurrentOrder(data.order);
+        }
+    }
+    fetchCurrentOrder();
+    const [visibleOrder, setVisibleOrder] = useState<number | null>(null);
 
-    const toggleOrder = (id) => {
-        setVisibleOrder(visibleOrder === id ? null : id);
+    const toggleOrder = (id: number) => {
+    setVisibleOrder(visibleOrder === id ? null : id);
     };
     return(
         <>
@@ -51,7 +41,7 @@ function UserCurrent(){
                                     <div className="mt-2">
                                     <hr />
                                     <Label className="text-lg text-red-700 mt-3">Details:</Label>
-                                    {order.order_list.map((menu, index) => (
+                                    {order.order.map((menu, index) => (
                                         <Label key={index} className="my-2 text-red-700">
                                         {menu}
                                         </Label>

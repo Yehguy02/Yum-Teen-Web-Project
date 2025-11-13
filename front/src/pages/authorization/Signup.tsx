@@ -26,6 +26,11 @@ function Signup(){
 
     const handleSignup = async (e : React.FormEvent) => {
         e.preventDefault();
+        if(formData.confirmpassword != formData.password){
+            toast.info("Password not match!");
+            console.log("not match")
+            return;
+        }
         const url = "http://localhost:8000/api/signup"
         const res = await fetch(url, {
             method : 'POST',

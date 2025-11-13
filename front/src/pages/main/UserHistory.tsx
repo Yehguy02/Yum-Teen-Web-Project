@@ -11,52 +11,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-function UserHistorty(){
-    const histories = [
-        {
-            id : 1,
-            date : "10/09/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
-        {
-            id : 2,
-            date : "10/09/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
-        {
-            id : 3,
-            date : "10/09/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
-        {
-            id : 3,
-            date : "10/09/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
-        {
-            id : 3,
-            date : "10/09/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
-        {
-            id : 3,
-            date : "10/08/2025",
-            store : "Pizza hut",
-            price : 500,
-            order : ["1x Mi","1x Et"]
-        },
+import { useState } from "react";
+import type { Queue } from "@/index";
 
-    ]
+function UserHistorty(){
+    const [histories, setHistories] = useState<Queue[]>([]);
+    const fetchCurrentOrder = async () => {
+        const res = await fetch("/user/history");
+        if(res.ok){
+            const data = await res.json();
+            setHistories(data.order);
+        }
+    }
+    fetchCurrentOrder();
     return(
         <>
             <NavBar num={2}/>

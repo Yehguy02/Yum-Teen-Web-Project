@@ -26,3 +26,12 @@ export type Menu = {
     description? : string,
     img_src? : string
 }
+
+export type Queue = {
+    id : number,
+    store : string,
+    order : string[],
+    status : string,
+    price : number,
+    date : string
+}

@@ -45,7 +45,9 @@ export default function ComfirmOrder(){
     function handleProcess(){
         // if sucess, go to finish and clear this orders
         if (sum <= 0) return;
-        navigate("/user/finish")
+        sessionStorage.setItem("orders", JSON.stringify([]));
+        sessionStorage.setItem("discount", JSON.stringify(0));
+        navigate("/user/finish", {state : {orders : orders, discount : discount, sum : sum}})
     }
 
 

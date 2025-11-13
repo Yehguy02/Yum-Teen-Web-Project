@@ -3,12 +3,14 @@ import {
   Card,
 } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import sucessIcon from "@/assets/finish/check.png"
+import type { Order } from "@/index"
 
 export default function FinishOrder(){
     // fetch this order detail
-    
+    const location = useLocation();
+    const {orders, discount, sum} = location.state as {orders : Order[], discount : number, sum : number};
 
 
     return(
@@ -48,9 +50,9 @@ export default function FinishOrder(){
                         <p className="mb-2">Total:</p>
                     </div>
                     <div className="">
-                        <p className="mb-2">฿100.00</p>
-                        <p className="mb-2">฿20.00</p>
-                        <p className="mb-2">฿80.00</p>
+                        <p className="mb-2">฿{sum}</p>
+                        <p className="mb-2">฿{discount}</p>
+                        <p className="mb-2">฿{sum-discount}</p>
                     </div>
                 </div>
             </Card>
@@ -58,40 +60,26 @@ export default function FinishOrder(){
                 <Label className="text-xl font-bold text-2xl">Order list</Label>
                 <hr className=""></hr>
                 <ul>
-                    <li>
-                        <div className="flex flex-row justify-between mb-3">
-                            <div>
-                                <p className="text-lg font-medium">1x Pizza</p>
-                                <p className="text-gray-400">No spicy</p>
-                            </div>
-                            <div>
-                                <p>฿100</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="flex flex-row justify-between mb-3">
-                            <div>
-                                <p className="text-lg font-medium">1x Pizza</p>
-                                <p className="text-gray-400">Large</p>
-                                <p className="text-gray-400">Pepperroni</p>
-                            </div>
-                            <div>
-                                <p>฿100</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="flex flex-row justify-between mb-3">
-                            <div>
-                                <p className="text-lg font-medium">1x Pizza</p>
-                                <p className="text-gray-400">No spicy</p>
-                            </div>
-                            <div>
-                                <p>฿100</p>
-                            </div>
-                        </div>
-                    </li>
+                    {orders ? ( orders.map((order) => {
+                        return(
+                            <li>
+                                <div className="flex flex-row justify-between mb-3">
+                                    <div>
+                                        <p className="text-lg font-medium">{order.name}</p>
+                                        {order.note ? 
+                                        (<p className="text-gray-400">{order.note}</p>) 
+                                        : (<></>)}
+                                    </div>
+                                    <div>
+                                        {order.discounted_price ? 
+                                        (<p>฿{order.discounted_price}</p>) 
+                                        : (<p>฿{order.base_price}</p>)}
+                                    </div>
+                                </div>
+                            </li>
+                            )
+                    })
+                        ) : (<></>)}
                 </ul>
             </Card>
         </div>
