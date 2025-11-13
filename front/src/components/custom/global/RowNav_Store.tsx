@@ -19,24 +19,21 @@ import LogoutActive from "@/assets/home/icon/logout_yellow.svg"
 
 function NavBar({num} : {num : number}){
     const divs = [
-        {id : "home", defaultSrc : homeDefault, activeSrc : homeActive, href : "/" },
-        {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
-        {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/user/history" },
-        {id : "favourite", defaultSrc : favDefault , activeSrc : favActive, href : "/user/favourite" },
-        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/user/setting" },
-        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/user/logout" }
+        {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/store/queue" },
+        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/store/setting" },
+        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/store/logout" }
     ]
     
     return(
-        <div className="bg-white w-1/20 h-screen float-left fixed hidden sm:block">
+        <div className="bg-white w-full h-20 fixed top-0 left-0 flex justify-center sm:hidden">
             {/* 255 213 61 */}
-            <div className="flex flex-col gap-4 mt-20">
+            <div className="flex flex-row gap-6 items-center mt-0">
                 {divs.map((div) => (
                     <Link to={div.href}>
                         <div className="flex justify-center cursor-pointer hover:bg-gray-300 rounded mx-3"
                             key={div.id} id={div.id}>
                                 <img src={divs[num].id === div.id ? div.activeSrc : div.defaultSrc}
-                                className="w-12 h-12 rounded-2xl p-2"></img>
+                                className=" sm:w-12 sm:h-12 h-10 w-10 rounded-2xl sm:p-2"></img>
                         </div>
                     </Link>
                 ))}

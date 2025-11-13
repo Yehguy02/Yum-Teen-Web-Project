@@ -3,7 +3,7 @@ import starImg from "@/assets/home/star-solid-full.svg"
 
 export default function DisplayStoreItem({name, img_src, star, avg_time, description, id} : {name : string, img_src? : string, star : number, avg_time : number[], description : string, id : number}){
     return(
-        <div className="w-60 h-60 bg-white p-2 rounded-2xl shadow">
+        <div className="w-full sm:w-60 h-60 bg-white p-2 rounded-2xl shadow">
             <Link to={`/user/store/${id}`}>
             <div className="bg-purple-800 w-full h-6/10 rounded-2xl">
                 <img src={img_src} className="w-full h-full rounded-2xl"></img>

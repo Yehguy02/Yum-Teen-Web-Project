@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import RowBar from '@/components/custom/global/RowNav_Store';
 import NavBar_Store from "@/components/custom/global/NavBar_Store";
 export default function StoreSetting(){
     const [isEdit,setEdit] = useState(false);
@@ -29,13 +30,14 @@ export default function StoreSetting(){
         avg_time : [10, 15]
     }
     return(
-        <div className="bg-gray-200 w-screen min-h-screen flex flex-row justify-between  bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]">
-        <NavBar_Store num={3}/>
-        <Card className="my-5 ml-22 mr-5 p-0">
+        <>
+        <NavBar_Store num={1}/>
+        <div className="mt-3 bg-gray-200 w-full min-h-screen flex flex-row justify-between bg-[#faf0d2] bg-gradient-to-r from-[#faf0d2] via-[#f2ce9b] to-[#f79000]">
+        <Card className="my-5 sm:ml-22 mx-2 sm:mr-5 w-full sm:w-auto max-w-full">
             <div className="w-full h-50 bg-blue-500 rounded-t-2xl">
             </div>
-            <div className="bg-white w-[1375px]">
-                <div className="px-10 py-3">
+            <div className="bg-white w-full sm:w-[1375px]">
+                <div className="px-4 sm:px-10 py-3">
                     <div className="flex justify-between">
                         {isEdit ? (
                         <> 
@@ -57,36 +59,12 @@ export default function StoreSetting(){
                             <p className="mb-5 text-gray-500">{store.description}</p>
                         </>
                         )}
-                    <div className="flex flex-row gap-2 text-sm">
-                        <div className="flex flex-row gap-1 items-center border-1 rounded px-1 py-0.5">
-                            <img className="bg-amber-300 w-4 h-4 rounded-full p-0.5" src={StarPic}></img>
-                            <p>{store.star}</p>
-                        </div>
-                        
-                        {store.payment === "Cash" || store.payment === "All" ? (
-                            <div className="border-1 rounded px-1 py-0.5">
-                                <p>Cash</p>
-                            </div>
-                        ) : (
-                            <></>
-                        )}
-                        {store.payment === "PromptPay" || store.payment === "All" ? (
-                            <div className="border-1 rounded px-1 py-0.5">
-                                <p>PromptPay</p>
-                            </div>
-                        ) : (
-                            <></>
-                        )}
-                        <div className="border-1 rounded px-1 py-0.5">
-                            <p>{store.avg_time[0]}-{store.avg_time[1]} mins</p>
-                        </div>
-                    </div>
                 </div>
                 <br />
                 <hr className="mx-4 pd-3"/>
                 {isEdit ? ( 
                     <>
-                    <Card className="m-5 shadow-xl w-[1340px]">
+                    <Card className="m-2 sm:m-5 shadow-xl w-[300px] sm:w-[1340px]">
                         <CardHeader>
                             <div className="flex justify-between">
                                 <CardTitle className="text-center text-2xl mb-3">All Menu List</CardTitle>
@@ -134,11 +112,10 @@ export default function StoreSetting(){
                             
                         </CardHeader>
                         <CardContent>
-                            <Card className="w-3/8">
+                            <Card className="w-full">
                             <div className="flex justify-between">
                                 <Label className="mx-5">Menu Name</Label>
                                 <div>
-                                    <Button className="hover:bg-white border-2 bg-green-700 hover:text-green-700 border-green-700" onClick={()=>setDetail(!isDetail)}>Edit</Button>
                                     <Button className="hover:bg-white border-2 bg-red-700 hover:text-green-700 border-red-700 mx-3">Delete</Button>
                                 </div>
                             </div>
@@ -170,5 +147,7 @@ export default function StoreSetting(){
             </div>
         </Card>
         </div>
+        <RowBar num ={1}/>
+        </>
     )
 }

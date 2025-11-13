@@ -49,6 +49,6 @@ export default function StoreMain(){
                 <DisplayMenu title="Popular Now!"/>
                 <DisplayMenu title="Popular Now!"/>
             </div>
-        </div>
+          </div>
   );
 }

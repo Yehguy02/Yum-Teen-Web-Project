@@ -64,7 +64,7 @@ export default function HomeOrder(){
         }, 0);
     }, [orders]);
     return(
-        <Card className="bg-white w-80 h-3/4 top-5 right-0 flex flex-col justify-between pb-8 fixed mr-3">
+        <Card className="bg-white w-80 h-3/4 top-5 right-0 flex-col justify-between pb-8 fixed mr-3 hidden sm:flex">
             <div>
                 <h1 className="font-bold m-4 text-xl">My Orders</h1>
                 <ul>

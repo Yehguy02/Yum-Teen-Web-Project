@@ -1,3 +1,5 @@
+
+
 import { Link } from "react-router";
 import homeDefault from "@/assets/home/icon/house-regular-full.svg";
 import homeActive from "@/assets/home/icon/house-regular-full-active.svg";
@@ -28,15 +30,15 @@ function NavBar({num} : {num : number}){
     ]
     
     return(
-        <div className="bg-white w-1/20 h-screen float-left fixed hidden sm:block">
+        <div className="bg-white w-full h-20 fixed top-0 left-0 z-50 flex justify-center sm:hidden flex ">
             {/* 255 213 61 */}
-            <div className="flex flex-col gap-4 mt-20">
+            <div className="flex flex-row gap-6 items-center mt-0">
                 {divs.map((div) => (
                     <Link to={div.href}>
                         <div className="flex justify-center cursor-pointer hover:bg-gray-300 rounded mx-3"
                             key={div.id} id={div.id}>
                                 <img src={divs[num].id === div.id ? div.activeSrc : div.defaultSrc}
-                                className="w-12 h-12 rounded-2xl p-2"></img>
+                                className=" sm:w-12 sm:h-12 h-20 w-20 rounded-2xl sm:p-2"></img>
                         </div>
                     </Link>
                 ))}

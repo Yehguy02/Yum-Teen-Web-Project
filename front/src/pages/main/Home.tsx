@@ -5,6 +5,7 @@ import NavBar from "@/components/custom/global/NavBar";
 import { useState, createContext, useEffect} from "react";
 import { toast } from "sonner";
 import type { Order } from "@/index";
+import RowBar from "@/components/custom/global/RowNav";
 
 function Home(){
 
@@ -37,14 +38,15 @@ function Home(){
 
     return(
         <>
-            <div className="bg-gray-200 w-screen flex flex-row justify-between">
-                <NavBar num={0}/>
-                    <div className="flex flex-col items-center w-full pr-80 pl-25">
+            <NavBar num={0}/>
+            <div className="bg-gray-200 w-full overflow-x-hidden flex flex-row justify-between">
+                    <div className="flex flex-col items-center w-full pr-0 sm:pr-80 pl-0 sm:pl-25">
                         <HomeSearchBar/>
                         <HomeAllStore/>
                     </div>
                 <HomeOrder orders={orders} setOrders={setOrder}/>
             </div>
+            <RowBar num={0}/>
         </>
     )
 }

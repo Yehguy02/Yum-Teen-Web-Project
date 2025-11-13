@@ -50,9 +50,9 @@ export default function DisplayStore({title, stores_list} : {title : string, sto
     }
     return(
         // href of each store in "/user/store/{store_id}"
-        <div className="w-full overflow-x-auto p-5">
-            <Label className="text-3xl sm:ml-0 ml-80 mb-5">{title}</Label>
-            <div className="sm:flex gap-5 ml-80 sm:ml-0 flex-wrap grid grid-cols-1 w-[250px] sm:w-full">
+        <div className="w-full overflow-x-auto px-2 py-5 sm:p-5">
+            <Label className="text-3xl sm:ml-0 mb-5">{title}</Label>
+            <div className="sm:flex sm:flex-row gap-5 sm:ml-0 flex-wrap grid grid-cols-1">
                 {stores_list.map((store) => {
                     return(
                         <DisplayStoreItem key={store.id} name={store.name} star={store.star} avg_time={store.avg_time} description={store.description} id={store.id}/>
