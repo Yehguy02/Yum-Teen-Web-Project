@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import type { Order } from "@/index";
-
+import { Card } from "@/components/ui/card";
 type HomeOrderProps = {
   orders: Order[];
   setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
@@ -50,10 +50,10 @@ export default function HomeOrder({ orders, setOrders }: HomeOrderProps) {
     }, [orders]);
 
   return (
-    <div className="bg-white w-80 h-3/4 top-5 right-0 mr-5 mt-5 flex flex-col justify-between pb-8 shadow rounded fixed">
+    <Card className="bg-white w-80 h-3/4 top-5 right-0 flex-col justify-between pb-8 fixed mr-3 hidden sm:flex">
       <div>
-        <h1 className="font-bold m-4 text-xl">My Orders</h1>
-        <ul>
+          <h1 className="font-bold m-4 text-xl">My Orders</h1>
+          <ul>
           {orders.map(order => (
             <li key={order.id} className="mb-4">
               <div className="flex flex-row justify-between mx-6 text-lg">
@@ -105,6 +105,6 @@ export default function HomeOrder({ orders, setOrders }: HomeOrderProps) {
             onClick={() => handleProcess()}>Process</button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

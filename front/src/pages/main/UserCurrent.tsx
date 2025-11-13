@@ -1,6 +1,7 @@
 import NavBar from "@/components/custom/global/NavBar";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import NavRow from "@/components/custom/global/RowNav";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -58,7 +59,7 @@ function UserCurrent(){
             <>
                 <NavBar num={1}/>
                 <div className="bg-gray-200 min-h-screen pt-7 px-3">
-                    <Card className="ml-22 pt-5 px-7 w-[1370px]">
+                    <Card className="sm:ml-22 ml-2 pt-5 px-7 sm:w-[1370px] w-[300px]">
                         <Label>Loading current order...</Label>
                     </Card>
                 </div>
@@ -69,22 +70,22 @@ function UserCurrent(){
     return(
         <>
             <NavBar num={1}/>
-            <div className="bg-gray-200 min-h-screen pt-7 px-3">
-                <Card className="ml-22 pt-5 px-7 w-[1370px]">
+            <div className="bg-gray-200 min-h-screen sm:pt-7 px-0 sm:px-3 pt-17 mt-10 sm:mt-0 ">
+                <Card className="sm:ml-22 pt-5 sm:px-7 sm:w-[1370px] w-[340px] px-4">
                     <div className="flex justify-between">
-                        <Label className="text-3xl">History Order</Label>
+                        <Label className="text-xl sm:text-3xl">Current Order</Label>
                         <Button 
-                            className="text-black bg-white hover:bg-white hover:underline text-lg"
+                            className="text-black bg-white hover:bg-white hover:underline sm:text-lg text-base"
                             onClick={() => navigate(-1)}
                         >
                             Back
                         </Button>
                     </div>
-                    <Label className="text-lg">See the details and status of your order.</Label>
+                    <Label className="sm:text-lg">See the details and status of your active order.</Label>
                     
                     {!currentOrder ? (
                         <Card className="bg-white my-2 mr-5 p-5 w-3/8">
-                            <Label className="text-lg">No active orders</Label>
+                            <Label className="sm:text-lg text-base">No active orders</Label>
                         </Card>
                     ) : (
                         <Card className="bg-white my-2 mr-5 p-5 w-3/8">
@@ -105,6 +106,7 @@ function UserCurrent(){
                     )}
                 </Card>
             </div>
+            <NavRow num={1}/>
         </>
     )
 }

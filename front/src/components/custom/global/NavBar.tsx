@@ -11,37 +11,45 @@ import receiptActive from "@/assets/home/icon/receipt-solid-full-active.svg";
 import favDefault from "@/assets/home/icon/heart-regular-full.svg";
 import favActive from "@/assets/home/icon/heart-regular-full-active.svg";
 
-import settingDefault from "@/assets/home/icon/gear-solid-full.svg";
-import settingActive from "@/assets/home/icon/gear-solid-full-active.svg";
+import LogoutDefault from "@/assets/home/icon/logout.svg";
+import LogoutActive from "@/assets/home/icon/logout_yellow.svg";
 
-import LogoutDefault from "@/assets/home/icon/logout.svg"
-import LogoutActive from "@/assets/home/icon/logout_yellow.svg"
+type NavBarProps = {
+    num: number;
+};
 
-function NavBar({num} : {num : number}){
-    const divs = [
-        {id : "home", defaultSrc : homeDefault, activeSrc : homeActive, href : "/" },
-        {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
-        {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/user/history" },
-        {id : "favourite", defaultSrc : favDefault , activeSrc : favActive, href : "/user/favourite" },
-        {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/user/logout" }
-    ]
-    
-    return(
-        <div className="bg-white w-1/20 h-screen float-left fixed">
-            {/* 255 213 61 */}
-            <div className="flex flex-col gap-4 mt-20">
-                {divs.map((div) => (
-                    <Link to={div.href}>
-                        <div className="flex justify-center cursor-pointer hover:bg-gray-300 rounded mx-3"
-                            key={div.id} id={div.id}>
-                                <img src={divs[num].id === div.id ? div.activeSrc : div.defaultSrc}
-                                className="w-12 h-12 rounded-2xl p-2"></img>
-                        </div>
-                    </Link>
+const navItems = [
+    { id: "home", label: "Home", defaultSrc: homeDefault, activeSrc: homeActive, href: "/" },
+    { id: "order", label: "Orders", defaultSrc: orderDefault, activeSrc: orderActive, href: "/user/current" },
+    { id: "receipt", label: "History", defaultSrc: receiptDefault, activeSrc: receiptActive, href: "/user/history" },
+    { id: "favourite", label: "Favourites", defaultSrc: favDefault, activeSrc: favActive, href: "/user/favourite" },
+    { id: "logout", label: "Logout", defaultSrc: LogoutDefault, activeSrc: LogoutActive, href: "/user/logout" },
+];
+
+function NavBar({ num }: NavBarProps) {
+    const activeItem = navItems[num]?.id;
+
+    return (
+        <nav className="fixed left-0 top-0 hidden h-screen w-20 flex-col items-center border-r border-gray-100 bg-white py-10 sm:flex lg:w-24">
+            <ul className="flex flex-col gap-6">
+                {navItems.map(item => (
+                    <li key={item.id}>
+                        <Link
+                            to={item.href}
+                            aria-label={item.label}
+                            className="flex items-center justify-center rounded-xl p-2 transition hover:bg-gray-100"
+                        >
+                            <img
+                                src={activeItem === item.id ? item.activeSrc : item.defaultSrc}
+                                alt={item.label}
+                                className="h-12 w-12"
+                            />
+                        </Link>
+                    </li>
                 ))}
-            </div>
-        </div>
-    )
+            </ul>
+        </nav>
+    );
 }
 
 export default NavBar;
