@@ -1,7 +1,8 @@
 import persistent
 
 class Menu(persistent.Persistent):
-    def __init__(self, name, price, note, image_url) -> None:
+    def __init__(self, id, name, price, note, image_url) -> None:
+        self.id = id
         self.name = name
         self.price = price
         self.note = note
@@ -9,6 +10,8 @@ class Menu(persistent.Persistent):
         self.image_url = image_url
 
     # getter
+    def getID(self):
+        return self.id
     def getName(self):
         return self.name
     def getPrice(self):
@@ -21,6 +24,8 @@ class Menu(persistent.Persistent):
         return self.image_url
     
     # setter
+    def setID(self, id):
+        self.id = id
     def setName(self, name):
         self.name = name
     def setPrice(self, price):

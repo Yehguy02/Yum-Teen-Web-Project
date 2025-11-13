@@ -225,64 +225,38 @@ async def get_coupons(code: str, current_user: dict = Depends(get_current_user))
         "results": result
     }
 
+@app.get("/store/queue/{store_id}")
+async def get_store_queue(store_id: str):
+    stores = root.stores
 
+    # store keys are integers in the DB (see init_db), convert incoming path param
+    try:
+        key = int(store_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid store id. Must be an integer.")
 
+    if key not in stores:
+        raise HTTPException(status_code=404, detail="Store not found")
 
+    store = stores[key]
+    return {
+        "queue": store.getQueue()
+    }
 
+@app.get("/store/{store_id}/setting")
+async def get_store_setting(store_id: str):
+    stores = root.stores
 
+    # store keys are integers in the DB (see init_db), convert incoming path param
+    try:
+        key = int(store_id)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid store id. Must be an integer.")
 
-# later
-# @app.get("/home")
-# async def get_home(current_user: User = Depends(lambda: get_current_user(root))):
-#     return {
-#         "email": current_user.getEmail(),
-#         "orders": [order.to_dict() for order in current_user.getOrders()],
-#         "favorites": [store.to_dict() for store in current_user.getFavorites()]
-#     }
+    if key not in stores:
+        raise HTTPException(status_code=404, detail="Store not found")
 
-# @app.get("/search/name/{name}")
-
-# @app.get("/search/category/{category}")
-
-
-# @app.get("/setting")
-# async def get_setting(current_user: User = Depends(lambda: get_current_user(root))):
-#     return {
-#         "name": current_user.getName(),
-#         "email": current_user.getEmail(),
-#         "phone": current_user.getPhone(),
-#         "default_payment": current_user.getDefaultPayment(),
-#         "location": current_user.getLocation(),
-#         "store": current_user.getStore()
-#     }
-
-# @app.post("/setting")
-# async def update_setting(form_data: Request, current_user: User = Depends(lambda: get_current_user(root))):
-#     data = await form_data.json()
-
-#     if "name" in data:
-#         current_user.setName(data["name"])
-#     if "phone" in data:
-#         current_user.setPhone(data["phone"])
-#     if "default_payment" in data:
-#         current_user.setDefaultPayment(data["default_payment"])
-#     if "location" in data:
-#         current_user.setLocation(data["location"])
-#     if "store" in data:
-#         current_user.setStore(data["store"])
-
-#     root.users[current_user.getEmail()] = current_user
-
-#     return {"message": "Settings updated successfully."}
-
-# @app.get("/store")
-# async def get_store(current_user: User = Depends(lambda: get_current_user(root))):
-#     return {
-#         "store" : current_user.getStore()
-#     }
-
-# @app.get("/user/coupon")
-# async def get_coupon(current_user: User = Depends(lambda: get_current_user(root))):
-#     return {
-#         "coupons" : current_user.getCouponList()
-#     }
+    store = stores[key]
+    return {
+        "store": store
+    }

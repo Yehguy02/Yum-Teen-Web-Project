@@ -20,7 +20,6 @@ export default function HomeAllStore({
 
             <DisplayStores title="Popular Now" stores_list={popularStores} />
             <DisplayStores title="Trending Now" stores_list={trendingStores} />
-            <DisplayStores title="Near you" />
         </div>
     )
 }
