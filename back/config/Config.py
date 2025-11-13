@@ -27,44 +27,44 @@ def init_db(root):
 
     # create some menus
     menus1 = [
-        Menu("Pepperoni Pizza", 250, "Large Pepperoni Pizza with extra cheese", ""),
-        Menu("Veggie Pizza", 200, "Large Veggie Pizza with bell peppers, olives, and onions", ""),
-        Menu("BBQ Chicken Pizza", 270, "Large BBQ Chicken Pizza with red onions and cilantro", "")
+        Menu(1, "Pepperoni Pizza", 250, "Large Pepperoni Pizza with extra cheese", ""),
+        Menu(2, "Veggie Pizza", 200, "Large Veggie Pizza with bell peppers, olives, and onions", ""),
+        Menu(3, "BBQ Chicken Pizza", 270, "Large BBQ Chicken Pizza with red onions and cilantro", "")
     ]
     menus2 = [
-        Menu("California Roll", 150, "Crab, avocado, and cucumber roll", ""),
-        Menu("Spicy Tuna Roll", 180, "Tuna with spicy mayo and cucumber roll", ""),
-        Menu("Salmon Nigiri", 200, "Fresh salmon over vinegared rice", "")
+        Menu(1, "California Roll", 150, "Crab, avocado, and cucumber roll", ""),
+        Menu(2, "Spicy Tuna Roll", 180, "Tuna with spicy mayo and cucumber roll", ""),
+        Menu(3, "Salmon Nigiri", 200, "Fresh salmon over vinegared rice", "")
     ]
     menus3 = [
-        Menu("Big Mac", 120, "Two all-beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun", ""),
-        Menu("Chicken Nuggets", 80, "Crispy chicken nuggets with your choice of dipping sauce", ""),
-        Menu("Fries", 50, "Golden crispy fries", "")
+        Menu(1, "Big Mac", 120, "Two all-beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun", ""),
+        Menu(2, "Chicken Nuggets", 80, "Crispy chicken nuggets with your choice of dipping sauce", ""),
+        Menu(3, "Fries", 50, "Golden crispy fries", "")
     ]
     menus4 = [
-        Menu("Original Recipe Chicken", 150, "Crispy fried chicken with KFC's original recipe seasoning", ""),
-        Menu("Zinger Burger", 130, "Spicy chicken fillet with lettuce and mayo in a bun", ""),
-        Menu("Mashed Potatoes", 70, "Creamy mashed potatoes with gravy", "")
+        Menu(1, "Original Recipe Chicken", 150, "Crispy fried chicken with KFC's original recipe seasoning", ""),
+        Menu(2, "Zinger Burger", 130, "Spicy chicken fillet with lettuce and mayo in a bun", ""),
+        Menu(3, "Mashed Potatoes", 70, "Creamy mashed potatoes with gravy", "")
     ]
     menus5 = [
-        Menu("Tom Yum Noodles", 90, "Spicy and sour tom yum soup with noodles", ""),
-        Menu("Pad Thai", 80, "Stir-fried rice noodles with shrimp,", ""),
-        Menu("Beef Noodle Soup", 100, "Savory beef broth with noodles and tender beef slices", "")
+        Menu(1, "Tom Yum Noodles", 90, "Spicy and sour tom yum soup with noodles", ""),
+        Menu(2, "Pad Thai", 80, "Stir-fried rice noodles with shrimp,", ""),
+        Menu(3, "Beef Noodle Soup", 100, "Savory beef broth with noodles and tender beef slices", "")
     ]
     menus6 = [
-        Menu("Ramen", 120, "Japanese noodle soup with pork, egg, and vegetables", ""),
-        Menu("Udon", 110, "Thick wheat noodles in a savory broth with tempura", ""),
-        Menu("Soba", 100, "Buckwheat noodles served cold with dipping sauce", "")
+        Menu(1, "Ramen", 120, "Japanese noodle soup with pork, egg, and vegetables", ""),
+        Menu(2, "Udon", 110, "Thick wheat noodles in a savory broth with tempura", ""),
+        Menu(3, "Soba", 100, "Buckwheat noodles served cold with dipping sauce", "")
     ]
     menus7 = [
-        Menu("Porkchop Steak", 180, "Juicy porkchop steak with black pepper sauce", ""),
-        Menu("Grilled Salmon", 220, "Fresh grilled salmon with lemon butter sauce", ""),
-        Menu("Prab Zian", 590, "Massive portion of mixed grilled meats, salad, and sides", "")
+        Menu(1, "Porkchop Steak", 180, "Juicy porkchop steak with black pepper sauce", ""),
+        Menu(2, "Grilled Salmon", 220, "Fresh grilled salmon with lemon butter sauce", ""),
+        Menu(3, "Prab Zian", 590, "Massive portion of mixed grilled meats, salad, and sides", "")
     ]
     menus8 = [
-        Menu("Basil Friend Rice", 59, "Stir-fried rice with minced pork and holy basil", ""),
-        Menu("Chicken Fried Rice", 59, "Classic chicken fried rice with egg and vegetables", ""),
-        Menu("Pork with Garlic", 69, "Stir-fried pork with garlic and black pepper sauce", "")
+        Menu(1, "Basil Friend Rice", 59, "Stir-fried rice with minced pork and holy basil", ""),
+        Menu(2, "Chicken Fried Rice", 59, "Classic chicken fried rice with egg and vegetables", ""),
+        Menu(3, "Pork with Garlic", 69, "Stir-fried pork with garlic and black pepper sauce", "")
     ]
 
     # Add menus to stores

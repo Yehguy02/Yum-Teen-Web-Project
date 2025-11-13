@@ -225,7 +225,7 @@ async def get_coupons(code: str, current_user: dict = Depends(get_current_user))
         "results": result
     }
 
-@app.get("/store/{store_id}/queue")
+@app.get("/store/queue/{store_id}")
 async def get_store_queue(store_id: str):
     stores = root.stores
 
