@@ -14,41 +14,34 @@ import { useNavigate } from "react-router"
 import { useState } from "react"
 import { toast } from "sonner"
 import { EyeIcon,EyeClosed } from "lucide-react"
+import { authAPI } from "@/services/api"
 
 function App() {
   const [showPassword,setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isStore,setStore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const handleLogin = async (e : React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    // send form to back end
-    const formData = {
-      email : email,
-      password : password,
+    try {
+      const data = await authAPI.login(email, password);
+      
+      if (data.access_token) {
+        localStorage.setItem('token', data.access_token);
+        toast.success("Login successful!");
+        navigate('/');
+      }
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Login failed";
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
-
-    const url = "http://localhost:8000/api/login"
-    const res = await fetch(url, {
-      method : 'POST',
-      body: JSON.stringify(formData),
-      headers: {"Content-Type": "application/json"}
-    });
-    
-    const data = await res.json();
-
-    if (res.ok){
-      const token = data.token;
-      localStorage.setItem('token' , token);
-      navigate('/');
-    }else{
-      toast.error(data.detail);
-    }
-
   }
   
   return (
@@ -102,8 +95,8 @@ function App() {
         </div>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full mt-5">
-          Login
+        <Button type="submit" className="w-full mt-5" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
         </Button>
         <hr />
         <div className="flex space-x-1 text-sm mt-3">

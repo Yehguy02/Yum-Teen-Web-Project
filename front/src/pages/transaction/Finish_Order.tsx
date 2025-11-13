@@ -72,8 +72,8 @@ export default function FinishOrder(){
                                     </div>
                                     <div>
                                         {order.discounted_price ? 
-                                        (<p>฿{order.discounted_price}</p>) 
-                                        : (<p>฿{order.base_price}</p>)}
+                                        (<p>฿{order.discounted_price * order.quanity}</p>) 
+                                        : (<p>฿{order.base_price * order.quanity}</p>)}
                                     </div>
                                 </div>
                             </li>

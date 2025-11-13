@@ -1,7 +1,6 @@
 export type Store = {
     id : number
     name : string
-    star : number,
     avg_time : number[],
     description : string
     payment : string

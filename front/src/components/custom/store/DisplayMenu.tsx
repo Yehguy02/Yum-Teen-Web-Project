@@ -10,10 +10,12 @@ type DisplayMenuProps = {
 };
 
 export default function DisplayMenu({ title, menus_list, orders, setOrders }: DisplayMenuProps) {
-  function handleAddToCart(id: number, name: string, base_price: number) {
+  function handleAddToCart(id: number, name: string, base_price: number, discount_price? : number) {
     const curr_order = orders.find(o => o.id === id);
+    const orderItem = { id, name, quanity: 1, base_price, ...(discount_price && { discounted_price: discount_price }) };
+    
     if (!curr_order) {
-      setOrders([...orders, { id, name, quanity: 1, base_price }]);
+      setOrders([...orders, orderItem]);
     } else {
       setOrders(
         orders.map(o => (o.id === id ? { ...o, quanity: o.quanity + 1 } : o))
@@ -24,7 +26,7 @@ export default function DisplayMenu({ title, menus_list, orders, setOrders }: Di
   if (!menus_list) {
     menus_list = [
       { id: 1, name: "Food 1", base_price: 100 },
-      { id: 2, name: "Food 2", base_price: 100 },
+      { id: 2, name: "Food 2", base_price: 100, discount_price: 80 },
       { id: 3, name: "Food 3", base_price: 100 },
     ];
   }
@@ -34,7 +36,7 @@ export default function DisplayMenu({ title, menus_list, orders, setOrders }: Di
       <h1 className="font-bold text-xl mb-3">{title}</h1>
       <div className="flex flex-row flex-wrap gap-7">
         {menus_list.map(menu => (
-          <Card className="cursor-pointer w-43 h-57 border-1" key={menu.id} onClick={() => handleAddToCart(menu.id, menu.name, menu.base_price)}>
+          <Card className="cursor-pointer w-43 h-57 border-1" key={menu.id} onClick={() => handleAddToCart(menu.id, menu.name, menu.base_price, menu.discount_price)}>
             <CardHeader>
                 <div className="w-30 h-30 bg-blue-500 rounded-2xl mx-auto">
                     <img></img>
@@ -42,7 +44,11 @@ export default function DisplayMenu({ title, menus_list, orders, setOrders }: Di
             </CardHeader>
             <CardContent>
                 <CardTitle>{menu.name}</CardTitle>
-                <p>{menu.base_price}</p>
+                {menu.discount_price ? (
+                  <p>฿{menu.discount_price} <span className="line-through text-gray-500">{menu.base_price}</span></p>
+                ) :(
+                  <p>฿{menu.base_price}</p>
+                )}
             </CardContent>
           </Card>
         ))}

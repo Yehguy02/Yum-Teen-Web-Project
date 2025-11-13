@@ -1,7 +1,14 @@
 import HomeCategory from "./home-category"
 import DisplayStores from "@/components/custom/global/DisplayStore"
+import type { Store } from "@/index"
 
-export default function HomeAllStore(){
+export default function HomeAllStore({
+  popularStores = [],
+  trendingStores = [],
+}: {
+  popularStores?: Store[];
+  trendingStores?: Store[];
+}){
 
     return(
         <div className="flex flex-col gap-5">
@@ -11,9 +18,9 @@ export default function HomeAllStore(){
                 </div>
             </a>
 
-            <DisplayStores title="Popular Now"/>
-            <DisplayStores title="Trending Now"/>
-            <DisplayStores title="Near you"/>
+            <DisplayStores title="Popular Now" stores_list={popularStores} />
+            <DisplayStores title="Trending Now" stores_list={trendingStores} />
+            <DisplayStores title="Near you" />
         </div>
     )
 }

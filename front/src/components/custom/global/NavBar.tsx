@@ -23,7 +23,6 @@ function NavBar({num} : {num : number}){
         {id : "order", defaultSrc : orderDefault , activeSrc : orderActive, href : "/user/current" },
         {id : "receipt", defaultSrc : receiptDefault , activeSrc : receiptActive, href : "/user/history" },
         {id : "favourite", defaultSrc : favDefault , activeSrc : favActive, href : "/user/favourite" },
-        {id : "setting", defaultSrc : settingDefault , activeSrc : settingActive, href : "/user/setting" },
         {id : "logout", defaultSrc : LogoutDefault , activeSrc : LogoutActive, href : "/user/logout" }
     ]
     

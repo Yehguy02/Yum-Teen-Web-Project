@@ -1,7 +1,7 @@
 import { Link } from "react-router"
 import starImg from "@/assets/home/star-solid-full.svg"
 
-export default function DisplayStoreItem({name, img_src, star, avg_time, description, id} : {name : string, img_src? : string, star : number, avg_time : number[], description : string, id : number}){
+export default function DisplayStoreItem({name, img_src, avg_time, description, id, category} : {name : string, img_src? : string, avg_time : number[], description : string, id : number, category? : string[] }){
     return(
         <div className="w-60 h-60 bg-white p-2 rounded-2xl shadow">
             <Link to={`/user/store/${id}`}>
@@ -10,12 +10,10 @@ export default function DisplayStoreItem({name, img_src, star, avg_time, descrip
             </div>
             <div className="mx-4">
                 <h1 className="font-bold text-black mt-2">{name}</h1>
-                <div className="flex flex-row justify-between text-sm">
-                    <div className="flex flex-row gap-1">
-                        <img className="bg-amber-300 w-4 h-4 rounded-full p-0.5" src={starImg}></img>
-                        <p>{star}</p>
-                    </div>
-                    <p>{avg_time[0]}-{avg_time[1]} min</p>
+                <div className="flex flex-row gap-3 text-sm">
+                    {category?.map((cat) => {
+                        return(<div className="border-1 border-black px-1.5 rounded">{cat}</div>)
+                    })}
                 </div>
                 <p className="text-sm">{description}</p>
             </div>

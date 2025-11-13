@@ -42,8 +42,25 @@ export default function ComfirmOrder(){
         console.log(orders);
     }
 
-    function handleProcess(){
+    async function handleProcess(){
         // if sucess, go to finish and clear this orders
+        // const res = await fetch("/order/process", {
+        //     method : "POST",
+        //     headers : {
+        //         "Content-Type" : "application/json"
+        //     },
+        //     body : JSON.stringify({
+        //         orders : orders,
+        //         discount : discount,
+        //         sum : sum
+        //     })
+        // });
+        // if (!res.ok){
+        //     const data = await res.json();
+        //     alert(data.detail);
+        //     return;
+        // }
+
         if (sum <= 0) return;
         sessionStorage.setItem("orders", JSON.stringify([]));
         sessionStorage.setItem("discount", JSON.stringify(0));

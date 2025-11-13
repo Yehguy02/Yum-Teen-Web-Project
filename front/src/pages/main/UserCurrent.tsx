@@ -36,7 +36,10 @@ function UserCurrent(){
                                 <Label className="text-lg">Store : {order.store}</Label>
                                 <hr />
                                 <Label className="text-gray-600">ID : {order.id}</Label>
-                                <Label>Status : {order.status}</Label> 
+                                <div className="flex flex-row">
+                                    <Label>Status : {order.status}</Label>
+                                    <div className={`w-4 h-4 rounded-full ${order.status == "preparing" ? "text-orange-400" : "text-blue-500"}`}></div>
+                                </div>
                                 {visibleOrder === order.id && (
                                     <div className="mt-2">
                                     <hr />
