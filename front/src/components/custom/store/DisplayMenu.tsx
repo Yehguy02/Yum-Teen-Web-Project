@@ -41,7 +41,7 @@ export default function DisplayMenu({ title, menus_list, orders, setOrders }: Di
           <Card className="cursor-pointer w-54 h-59 border-1" key={menu.id} onClick={() => handleAddToCart(menu.id, menu.name, menu.base_price, menu.discount_price)}>
             <CardHeader>
                 <div className="w-30 h-30 bg-blue-500 rounded-2xl mx-auto">
-                    <img></img>
+                    <img src={menu.img_src}></img>
                 </div>
             </CardHeader>
             <CardContent>
