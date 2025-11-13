@@ -50,7 +50,7 @@ export default function HomeOrder({ orders, setOrders }: HomeOrderProps) {
     }, [orders]);
 
   return (
-    <Card className="bg-white w-80 h-3/4 top-5 right-0 flex-col justify-between pb-8 fixed mr-3 hidden sm:flex">
+    <Card className="hidden w-80 max-h-[80vh] flex-col justify-between gap-6 overflow-hidden bg-white pb-6 shadow-sm sm:flex sm:sticky sm:top-10">
       <div>
           <h1 className="font-bold m-4 text-xl">My Orders</h1>
           <ul>
